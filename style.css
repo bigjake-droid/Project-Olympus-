@@ -1,0 +1,103 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  background: #05090d;
+  color: #d6b56d;
+}
+
+.vindex-screen {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  background-image: url("vindex-create-account.png");
+  background-size: cover;
+  background-position: center top;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.top-spacer {
+  flex: 1;
+}
+
+.button-panel,
+.form {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.main-btn,
+.secondary-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.main-btn {
+  background: linear-gradient(135deg, #d6b56d, #8b6a2f);
+  border: 1px solid #f0d48a;
+  color: #071016;
+  box-shadow: 0 0 18px rgba(214, 181, 109, 0.35);
+}
+
+.secondary-btn {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid #b8924f;
+  color: #d6b56d;
+}
+
+input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #b8924f;
+  background: rgba(2, 8, 12, 0.75);
+  color: #f3e3b2;
+  font-size: 16px;
+  outline: none;
+}
+
+input::placeholder {
+  color: rgba(243, 227, 178, 0.55);
+}
+
+.hidden {
+  display: none;
+}
+
+#message {
+  text-align: center;
+  min-height: 24px;
+  color: #f3e3b2;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+}
