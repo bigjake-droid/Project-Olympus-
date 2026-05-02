@@ -11,7 +11,6 @@ body {
   font-family: Georgia, "Times New Roman", serif;
 }
 
-/* Full splash page */
 .vindex-screen {
   position: relative;
   width: 100%;
@@ -30,31 +29,83 @@ body {
   overflow: hidden;
 }
 
-/* Dark layer so buttons read cleanly */
 .dark-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.18);
   pointer-events: none;
   z-index: 1;
 }
 
-/* Button container */
-.entry-panel {
+.entry-panel,
+.form-panel {
   position: relative;
   z-index: 2;
-
   width: 100%;
   max-width: 420px;
+  margin-bottom: 42px;
 
   display: flex;
   flex-direction: column;
   gap: 14px;
 
-  margin-bottom: 46px;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
 }
 
-/* Shared button style */
+.form-panel {
+  padding: 22px;
+  border: 1px solid rgba(216, 183, 109, 0.75);
+  border-radius: 18px;
+
+  background: rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(8px);
+
+  box-shadow:
+    0 0 24px rgba(0, 0, 0, 0.65),
+    inset 0 0 18px rgba(216, 183, 109, 0.08);
+}
+
+.form-panel h2 {
+  margin: 0;
+  color: #d8b76d;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 22px;
+}
+
+.form-panel p {
+  margin: 0 0 8px;
+  color: rgba(243, 227, 178, 0.7);
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+input {
+  width: 100%;
+  padding: 15px 16px;
+
+  border-radius: 10px;
+  border: 1px solid rgba(216, 183, 109, 0.7);
+
+  background: rgba(3, 10, 15, 0.82);
+  color: #f3e3b2;
+
+  font-size: 16px;
+  outline: none;
+}
+
+input::placeholder {
+  color: rgba(243, 227, 178, 0.45);
+}
+
+input:focus {
+  border-color: #f3d992;
+  box-shadow: 0 0 10px rgba(216, 183, 109, 0.28);
+}
+
 .primary-btn,
 .secondary-btn {
   width: 100%;
@@ -74,7 +125,6 @@ body {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* Create Account button */
 .primary-btn {
   border: 1px solid #f3d992;
 
@@ -92,12 +142,9 @@ body {
     inset 0 0 10px rgba(255, 255, 255, 0.22);
 }
 
-/* Login button */
 .secondary-btn {
   border: 1px solid rgba(216, 183, 109, 0.8);
-
   background: rgba(0, 0, 0, 0.48);
-
   color: #d8b76d;
 
   box-shadow:
@@ -106,17 +153,68 @@ body {
 }
 
 .primary-btn:active,
-.secondary-btn:active {
+.secondary-btn:active,
+.text-btn:active {
   transform: scale(0.97);
 }
 
-/* Smaller phone adjustment */
+.text-btn {
+  border: none;
+  background: transparent;
+  color: rgba(243, 227, 178, 0.72);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.hidden-panel {
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+  display: none;
+}
+
+.active-panel {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  display: flex;
+}
+
+.message-box {
+  position: fixed;
+  left: 20px;
+  right: 20px;
+  bottom: 24px;
+  z-index: 4;
+
+  display: none;
+
+  padding: 14px 16px;
+  border-radius: 12px;
+
+  background: rgba(0, 0, 0, 0.82);
+  border: 1px solid rgba(216, 183, 109, 0.75);
+
+  color: #f3e3b2;
+  text-align: center;
+  letter-spacing: 1px;
+
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.55);
+}
+
+.message-box.show {
+  display: block;
+}
+
 @media (max-width: 420px) {
   .vindex-screen {
     padding: 20px;
   }
 
-  .entry-panel {
+  .entry-panel,
+  .form-panel {
     margin-bottom: 34px;
   }
 
@@ -125,5 +223,9 @@ body {
     font-size: 14px;
     padding: 16px;
     letter-spacing: 2.5px;
+  }
+
+  .form-panel h2 {
+    font-size: 20px;
   }
 }
