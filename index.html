@@ -9,34 +9,17 @@
 <body>
 
   <main class="vindex-screen">
+    <div class="dark-overlay"></div>
 
-    <div class="overlay"></div>
+    <section class="entry-panel">
+      <button class="primary-btn" onclick="createAccount()">
+        Create Account
+      </button>
 
-    <section class="content">
-      <div class="top-spacer"></div>
-
-      <div class="button-panel">
-        <button onclick="showCreate()" class="main-btn">Create Account</button>
-        <button onclick="showLogin()" class="secondary-btn">Login</button>
-      </div>
-
-      <form id="createForm" class="form hidden">
-        <input type="text" id="fullName" placeholder="Full Name" />
-        <input type="email" id="email" placeholder="Email Address" />
-        <input type="password" id="password" placeholder="Create Password" />
-        <input type="password" id="confirmPassword" placeholder="Confirm Password" />
-        <button type="button" onclick="createAccount()" class="main-btn">Enter Record</button>
-      </form>
-
-      <form id="loginForm" class="form hidden">
-        <input type="email" id="loginEmail" placeholder="Email Address" />
-        <input type="password" id="loginPassword" placeholder="Password" />
-        <button type="button" onclick="loginUser()" class="main-btn">Access Record</button>
-      </form>
-
-      <p id="message"></p>
+      <button class="secondary-btn" onclick="loginAccount()">
+        Login
+      </button>
     </section>
-
   </main>
 
   <script src="script.js"></script>
