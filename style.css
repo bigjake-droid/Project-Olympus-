@@ -2,102 +2,107 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
+  width: 100%;
+  min-height: 100%;
+  background: #02070b;
   font-family: Georgia, "Times New Roman", serif;
-  background: #05090d;
-  color: #d6b56d;
 }
 
+/* Main background screen */
 .vindex-screen {
-  min-height: 100vh;
-  width: 100%;
   position: relative;
-  background-image: url("vindex-create-account.png");
+  width: 100%;
+  min-height: 100vh;
+
+  background-image: url("vindex-bg.png");
   background-size: cover;
   background-position: center top;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  padding: 24px;
   overflow: hidden;
 }
 
-.overlay {
+/* Slight dark layer so buttons stay readable */
+.dark-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.15);
-  z-index: 1;
+  background: rgba(0, 0, 0, 0.18);
+  pointer-events: none;
 }
 
-.content {
+/* Button area */
+.entry-panel {
   position: relative;
   z-index: 2;
-  min-height: 100vh;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.top-spacer {
-  flex: 1;
-}
-
-.button-panel,
-.form {
   width: 100%;
   max-width: 420px;
-  margin: 0 auto 26px;
+
   display: flex;
   flex-direction: column;
   gap: 14px;
+
+  margin-bottom: 34px;
 }
 
-.main-btn,
+/* Main button */
+.primary-btn,
 .secondary-btn {
   width: 100%;
-  padding: 16px;
+  padding: 16px 18px;
+
   border-radius: 10px;
   font-size: 15px;
+  font-weight: bold;
   letter-spacing: 2px;
   text-transform: uppercase;
-  font-weight: bold;
+
+  cursor: pointer;
 }
 
-.main-btn {
-  background: linear-gradient(135deg, #d6b56d, #8b6a2f);
-  border: 1px solid #f0d48a;
+/* Gold button */
+.primary-btn {
+  border: 1px solid #f1d28a;
+  background: linear-gradient(135deg, #d8b76d, #9b7436);
   color: #071016;
-  box-shadow: 0 0 18px rgba(214, 181, 109, 0.35);
+
+  box-shadow:
+    0 0 18px rgba(216, 183, 109, 0.35),
+    inset 0 0 8px rgba(255, 255, 255, 0.18);
 }
 
+/* Dark outline button */
 .secondary-btn {
-  background: rgba(0, 0, 0, 0.45);
-  border: 1px solid #b8924f;
-  color: #d6b56d;
+  border: 1px solid #b9924e;
+  background: rgba(0, 0, 0, 0.55);
+  color: #d8b76d;
+
+  box-shadow:
+    0 0 12px rgba(0, 0, 0, 0.45),
+    inset 0 0 8px rgba(216, 183, 109, 0.08);
 }
 
-input {
-  width: 100%;
-  padding: 16px;
-  border-radius: 10px;
-  border: 1px solid #b8924f;
-  background: rgba(2, 8, 12, 0.75);
-  color: #f3e3b2;
-  font-size: 16px;
-  outline: none;
+.primary-btn:active,
+.secondary-btn:active {
+  transform: scale(0.98);
 }
 
-input::placeholder {
-  color: rgba(243, 227, 178, 0.55);
-}
+/* Small phone adjustment */
+@media (max-width: 420px) {
+  .entry-panel {
+    margin-bottom: 26px;
+  }
 
-.hidden {
-  display: none;
-}
-
-#message {
-  text-align: center;
-  min-height: 24px;
-  color: #f3e3b2;
-  font-size: 14px;
-  letter-spacing: 1px;
-  margin-bottom: 18px;
+  .primary-btn,
+  .secondary-btn {
+    font-size: 14px;
+    padding: 15px;
+  }
 }
