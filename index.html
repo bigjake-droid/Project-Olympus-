@@ -3,27 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Project Vindex</title>
-
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
   <main class="vindex-screen">
-
     <div class="dark-overlay"></div>
 
-    <section class="entry-panel">
-      <button id="createBtn" class="primary-btn">
-        Create Account
-      </button>
-
-      <button id="loginBtn" class="secondary-btn">
-        Login
-      </button>
+    <!-- SPLASH BUTTONS -->
+    <section id="splashPanel" class="entry-panel active-panel">
+      <button id="createBtn" class="primary-btn">Create Account</button>
+      <button id="loginBtn" class="secondary-btn">Login</button>
     </section>
 
+    <!-- CREATE ACCOUNT PANEL -->
+    <section id="createPanel" class="form-panel hidden-panel">
+      <h2>Create Account</h2>
+      <p>Establish your record.</p>
+
+      <input id="fullName" type="text" placeholder="Full Name" />
+      <input id="createEmail" type="email" placeholder="Email Address" />
+      <input id="createPassword" type="password" placeholder="Create Password" />
+      <input id="confirmPassword" type="password" placeholder="Confirm Password" />
+
+      <button id="submitCreateBtn" class="primary-btn">Enter Vindex</button>
+      <button id="backFromCreateBtn" class="text-btn">Back</button>
+    </section>
+
+    <!-- LOGIN PANEL -->
+    <section id="loginPanel" class="form-panel hidden-panel">
+      <h2>Login</h2>
+      <p>Return to your record.</p>
+
+      <input id="loginEmail" type="email" placeholder="Email Address" />
+      <input id="loginPassword" type="password" placeholder="Password" />
+
+      <button id="submitLoginBtn" class="primary-btn">Access Record</button>
+      <button id="backFromLoginBtn" class="text-btn">Back</button>
+    </section>
+
+    <div id="messageBox" class="message-box"></div>
   </main>
 
   <script src="script.js"></script>
