@@ -1,13 +1,21 @@
-function createAccount() {
-  localStorage.setItem("vindex_entry_mode", "create");
+document.addEventListener("DOMContentLoaded", function () {
+  const createBtn = document.getElementById("createBtn");
+  const loginBtn = document.getElementById("loginBtn");
 
-  // Change this later to your real create-account page
-  alert("Create Account selected.");
-}
+  if (!createBtn || !loginBtn) {
+    console.error("Buttons not found. Check index.html button IDs.");
+    return;
+  }
 
-function loginAccount() {
-  localStorage.setItem("vindex_entry_mode", "login");
+  createBtn.addEventListener("click", function () {
+    localStorage.setItem("vindex_entry_mode", "create");
 
-  // Change this later to your real login page
-  alert("Login selected.");
-}
+    alert("Create Account selected. Next screen coming.");
+  });
+
+  loginBtn.addEventListener("click", function () {
+    localStorage.setItem("vindex_entry_mode", "login");
+
+    alert("Login selected. Next screen coming.");
+  });
+});
