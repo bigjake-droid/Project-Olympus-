@@ -6,11 +6,18 @@
 
   <title>Project Vindex</title>
 
-  <link rel="stylesheet" href="./style.css?v=3000" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css?v=9000" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 </head>
 
 <body>
+  <div id="introScreen" class="intro-screen">
+    <div class="intro-glow"></div>
+    <div class="intro-flare"></div>
+    <img src="vindex-logo.png" class="intro-logo" alt="Project Vindex Logo" />
+    <p class="intro-text">PROJECT VINDEX</p>
+  </div>
+
   <main class="vindex-screen">
     <div class="dark-overlay"></div>
 
@@ -46,6 +53,20 @@
     <div id="messageBox" class="message-box"></div>
   </main>
 
-  <script src="./script.js?v=3000"></script>
+  <script src="./script.js?v=9000"></script>
+
+  <script>
+    window.addEventListener("load", function () {
+      const intro = document.getElementById("introScreen");
+
+      setTimeout(function () {
+        intro.classList.add("intro-exit");
+
+        setTimeout(function () {
+          intro.style.display = "none";
+        }, 1100);
+      }, 3000);
+    });
+  </script>
 </body>
 </html>
