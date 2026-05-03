@@ -3,66 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Vindex Dashboard</title>
+  <title>Project Vindex</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <main class="vindex-screen dashboard-screen">
-    <div class="dark-overlay"></div>
 
-    <section class="form-panel active-panel">
-      <h2>Project Vindex</h2>
-      <p>Your record begins here.</p>
+<main class="dashboard">
 
-      <button class="primary-btn" onclick="openSection('Pro Se Guidebook')">
-        Pro Se Guidebook
-      </button>
+  <div class="overlay"></div>
 
-      <button class="secondary-btn" onclick="openSection('Evidence Organizer')">
-        Evidence Organizer
-      </button>
+  <section class="header">
+    <h1>PROJECT VINDEX</h1>
+    <p>Vox Dei</p>
+  </section>
 
-      <button class="secondary-btn" onclick="openSection('Case Timeline')">
-        Case Timeline
-      </button>
+  <section class="welcome">
+    <h2>Welcome Back</h2>
+    <p>Your record. Your cause. Your voice.</p>
+  </section>
 
-      <button class="secondary-btn" onclick="openSection('Export Dossier')">
-        Export Dossier
-      </button>
+  <section class="grid">
 
-      <button class="text-btn" onclick="logoutUser()">
-        Logout
-      </button>
-    </section>
+    <div class="card" onclick="openSection('Guidebook')">
+      <h3>Pro Se Guidebook</h3>
+      <p>Knowledge is your weapon</p>
+    </div>
 
-    <div id="messageBox" class="message-box"></div>
-  </main>
+    <div class="card" onclick="openSection('Evidence')">
+      <h3>Evidence Organizer</h3>
+      <p>Organize. Secure. Prepare.</p>
+    </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const loggedIn = localStorage.getItem("vindex_logged_in");
+    <div class="card" onclick="openSection('Timeline')">
+      <h3>Case Timeline</h3>
+      <p>Every event matters</p>
+    </div>
 
-      if (loggedIn !== "true") {
-        window.location.href = "index.html";
-      }
-    });
+    <div class="card" onclick="openSection('Export')">
+      <h3>Export Dossier</h3>
+      <p>Build. Export. Defend.</p>
+    </div>
 
-    function openSection(sectionName) {
-      const messageBox = document.getElementById("messageBox");
+  </section>
 
-      messageBox.textContent = sectionName + " coming next.";
-      messageBox.classList.add("show");
+  <button class="logout" onclick="logout()">Logout</button>
 
-      setTimeout(function () {
-        messageBox.classList.remove("show");
-      }, 2000);
-    }
+</main>
 
-    function logoutUser() {
-      localStorage.setItem("vindex_logged_in", "false");
-      window.location.href = "index.html";
-    }
-  </script>
+<script>
+function openSection(name) {
+  alert(name + " coming next");
+}
+
+function logout() {
+  localStorage.setItem("vindex_logged_in", "false");
+  window.location.href = "index.html";
+}
+</script>
+
 </body>
 </html>
