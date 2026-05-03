@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("vindex_user", JSON.stringify(user));
     localStorage.setItem("vindex_logged_in", "true");
 
-    window.location.href = "dashboard.html?v=200";
+    window.location.href = "dashboard.html?v=300";
   });
 
   submitLoginBtn.addEventListener("click", function () {
@@ -95,6 +95,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     localStorage.setItem("vindex_logged_in", "true");
 
-    window.location.href = "dashboard.html?v=200";
+    window.location.href = "dashboard.html?v=300";
   });
 });
