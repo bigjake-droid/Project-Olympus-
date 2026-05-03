@@ -392,3 +392,95 @@ input {
       0 8px 22px rgba(0,0,0,0.75);
   }
 }
+/* GUIDE PAGE */
+
+.guide-page {
+  position: relative;
+  min-height: 100vh;
+  background: url("vindex-dashboard.png") center/cover no-repeat;
+  color: #d9dee3;
+}
+
+/* HERO */
+
+.guide-hero {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px 20px 10px;
+}
+
+.guide-hero h1 {
+  font-size: 26px;
+  letter-spacing: 3px;
+}
+
+.guide-hero p {
+  font-size: 15px;
+  opacity: 0.7;
+  margin-top: 6px;
+}
+
+.back-btn {
+  margin-bottom: 20px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: transparent;
+  color: #ddd;
+}
+
+/* CONTENT */
+
+.guide-content {
+  position: relative;
+  z-index: 2;
+  padding: 10px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* CARDS */
+
+.guide-card {
+  background: rgba(0,0,0,0.7);
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.guide-card:hover {
+  border-color: rgba(255,255,255,0.4);
+}
+
+.guide-card h2 {
+  font-size: 18px;
+}
+
+/* COLLAPSIBLE */
+
+.guide-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.3s ease;
+  opacity: 0;
+}
+
+.guide-card.active .guide-body {
+  max-height: 300px;
+  margin-top: 10px;
+  opacity: 1;
+}
+
+.guide-body p,
+.guide-body li {
+  font-size: 14px;
+  color: #cfd6dc;
+}
+
+.guide-body ul {
+  padding-left: 18px;
+}
