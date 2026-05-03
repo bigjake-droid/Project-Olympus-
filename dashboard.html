@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Project Vindex Dashboard</title>
 
-  <link rel="stylesheet" href="./style.css?v=99" />
+  <link rel="stylesheet" href="./style.css?v=200" />
 </head>
 
 <body>
@@ -19,7 +20,7 @@
       </header>
 
       <section class="dash-welcome">
-        <h2>Welcome Back</h2>
+        <h2 id="welcomeName">Welcome Back</h2>
         <p>Your record. Your cause. Your voice.</p>
       </section>
 
@@ -45,6 +46,8 @@
         </button>
       </section>
 
+      <p class="dash-motto">Leave a record that cannot be ignored.</p>
+
       <button class="dash-logout" onclick="logoutUser()">Logout</button>
     </section>
 
@@ -54,9 +57,16 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const loggedIn = localStorage.getItem("vindex_logged_in");
+      const user = JSON.parse(localStorage.getItem("vindex_user"));
 
       if (loggedIn !== "true") {
         window.location.href = "index.html";
+        return;
+      }
+
+      if (user && user.fullName) {
+        document.getElementById("welcomeName").textContent =
+          "Welcome Back, " + user.fullName;
       }
     });
 
