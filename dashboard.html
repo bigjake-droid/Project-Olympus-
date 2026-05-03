@@ -3,64 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Vindex</title>
+  <title>Project Vindex Dashboard</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+  <main class="dash-page">
+    <div class="dash-overlay"></div>
 
-<main class="dashboard">
+    <section class="dash-content">
 
-  <div class="overlay"></div>
+      <header class="dash-header">
+        <h1>Project Vindex</h1>
+        <p>Vox Dei</p>
+      </header>
 
-  <section class="header">
-    <h1>PROJECT VINDEX</h1>
-    <p>Vox Dei</p>
-  </section>
+      <section class="dash-welcome">
+        <h2>Welcome Back</h2>
+        <p>Your record. Your cause. Your voice.</p>
+      </section>
 
-  <section class="welcome">
-    <h2>Welcome Back</h2>
-    <p>Your record. Your cause. Your voice.</p>
-  </section>
+      <section class="dash-grid">
+        <button class="dash-card" onclick="openSection('Pro Se Guidebook')">
+          <span>Pro Se Guidebook</span>
+          <small>Knowledge is your weapon.</small>
+        </button>
 
-  <section class="grid">
+        <button class="dash-card" onclick="openSection('Evidence Organizer')">
+          <span>Evidence Organizer</span>
+          <small>Organize. Secure. Prepare.</small>
+        </button>
 
-    <div class="card" onclick="openSection('Guidebook')">
-      <h3>Pro Se Guidebook</h3>
-      <p>Knowledge is your weapon</p>
-    </div>
+        <button class="dash-card" onclick="openSection('Case Timeline')">
+          <span>Case Timeline</span>
+          <small>Every event matters.</small>
+        </button>
 
-    <div class="card" onclick="openSection('Evidence')">
-      <h3>Evidence Organizer</h3>
-      <p>Organize. Secure. Prepare.</p>
-    </div>
+        <button class="dash-card" onclick="openSection('Export Dossier')">
+          <span>Export Dossier</span>
+          <small>Build. Export. Defend.</small>
+        </button>
+      </section>
 
-    <div class="card" onclick="openSection('Timeline')">
-      <h3>Case Timeline</h3>
-      <p>Every event matters</p>
-    </div>
+      <button class="dash-logout" onclick="logoutUser()">Logout</button>
 
-    <div class="card" onclick="openSection('Export')">
-      <h3>Export Dossier</h3>
-      <p>Build. Export. Defend.</p>
-    </div>
+    </section>
 
-  </section>
+    <div id="messageBox" class="message-box"></div>
+  </main>
 
-  <button class="logout" onclick="logout()">Logout</button>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const loggedIn = localStorage.getItem("vindex_logged_in");
+      if (loggedIn !== "true") {
+        window.location.href = "index.html";
+      }
+    });
 
-</main>
+    function openSection(sectionName) {
+      const messageBox = document.getElementById("messageBox");
+      messageBox.textContent = sectionName + " coming next.";
+      messageBox.classList.add("show");
 
-<script>
-function openSection(name) {
-  alert(name + " coming next");
-}
+      setTimeout(function () {
+        messageBox.classList.remove("show");
+      }, 1800);
+    }
 
-function logout() {
-  localStorage.setItem("vindex_logged_in", "false");
-  window.location.href = "index.html";
-}
-</script>
-
+    function logoutUser() {
+      localStorage.setItem("vindex_logged_in", "false");
+      window.location.href = "index.html";
+    }
+  </script>
 </body>
 </html>
