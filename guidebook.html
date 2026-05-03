@@ -2,81 +2,83 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pro Se Guidebook</title>
-  <link rel="stylesheet" href="style.css?v=1200" />
+  <link rel="stylesheet" href="style.css?v=500" />
 </head>
 
 <body>
-  <main class="page-shell">
-    <section class="page-content">
+  <main class="guide-page">
 
-      <button class="back-btn" onclick="location.href='dashboard.html?v=1200'">
-        ← Back to Dashboard
-      </button>
+    <div class="dash-overlay"></div>
 
-      <header class="page-header">
-        <h1>Pro Se Guidebook</h1>
-        <p>Knowledge is your weapon. Structure is your shield.</p>
-      </header>
+    <!-- HERO -->
+    <section class="guide-hero">
+      <button class="back-btn" onclick="goBack()">← Dashboard</button>
 
-      <section class="guide-section warning-box">
-        <h2>First Rule</h2>
-        <p>
-          Do not rely on memory alone. Courts care about records, dates, documents,
-          contradictions, and proof. If it matters, write it down.
-        </p>
-      </section>
+      <h1>PRO SE GUIDEBOOK</h1>
+      <p>Knowledge is your weapon. Structure is your shield.</p>
+    </section>
 
-      <section class="guide-section">
-        <h2>What Pro Se Means</h2>
-        <p>
-          Pro se means representing yourself without an attorney. That does not mean
-          guessing, ranting, or winging it. It means building a disciplined record.
-        </p>
-      </section>
+    <!-- CONTENT -->
+    <section class="guide-content">
 
-      <section class="guide-section">
-        <h2>Your Core Weapons</h2>
-        <ul>
-          <li>Timeline of events</li>
-          <li>Evidence index</li>
-          <li>Written communications</li>
-          <li>Contradictions in reports or statements</li>
-          <li>Deadlines and filing dates</li>
-        </ul>
-      </section>
+      <div class="guide-card" onclick="toggleCard(this)">
+        <h2>⚔ First Rule</h2>
+        <div class="guide-body">
+          <p>
+            Do not rely on memory. Courts care about records, dates, documents,
+            contradictions, and proof. If it matters—write it down.
+          </p>
+        </div>
+      </div>
 
-      <section class="guide-section">
-        <h2>Do Not Do This</h2>
-        <ul>
-          <li>Do not miss deadlines.</li>
-          <li>Do not rely on verbal promises.</li>
-          <li>Do not submit disorganized evidence.</li>
-          <li>Do not mix emotion with factual claims.</li>
-        </ul>
-      </section>
+      <div class="guide-card" onclick="toggleCard(this)">
+        <h2>📖 What Pro Se Means</h2>
+        <div class="guide-body">
+          <p>
+            Representing yourself is not guessing or ranting. It is building a
+            disciplined record that can withstand scrutiny.
+          </p>
+        </div>
+      </div>
 
-      <section class="guide-section">
-        <h2>Vindex Principle</h2>
-        <p>
-          A clean record is harder to bury. A clean timeline is harder to twist.
-          A clean evidence packet forces the other side to answer facts.
-        </p>
-      </section>
+      <div class="guide-card" onclick="toggleCard(this)">
+        <h2>🛡 Core Weapons</h2>
+        <div class="guide-body">
+          <ul>
+            <li>Timeline of events</li>
+            <li>Evidence index</li>
+            <li>Written communications</li>
+            <li>Contradictions in statements</li>
+            <li>Deadlines and filings</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="guide-card" onclick="toggleCard(this)">
+        <h2>🎯 Objective</h2>
+        <div class="guide-body">
+          <p>
+            You are not telling a story. You are building a record that forces
+            truth to reveal itself.
+          </p>
+        </div>
+      </div>
 
     </section>
+
   </main>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const loggedIn = localStorage.getItem("vindex_logged_in");
+    function goBack() {
+      window.location.href = "dashboard.html";
+    }
 
-      if (loggedIn !== "true") {
-        window.location.href = "index.html";
-      }
-    });
+    function toggleCard(card) {
+      card.classList.toggle("active");
+    }
   </script>
+
 </body>
 </html>
