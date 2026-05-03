@@ -1,72 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Project Vindex</title>
+<title>Project Vindex Technologies</title>
 
-  <link rel="stylesheet" href="./style.css?v=9000" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css?v=4000">
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
-<body>
-  <div id="introScreen" class="intro-screen">
-    <div class="intro-glow"></div>
-    <div class="intro-flare"></div>
-    <img src="vindex-logo.png" class="intro-logo" alt="Project Vindex Logo" />
-    <p class="intro-text">PROJECT VINDEX</p>
-  </div>
+<body class="vindex-screen">
 
-  <main class="vindex-screen">
-    <div class="dark-overlay"></div>
+<div class="dark-overlay"></div>
 
-    <section id="splashPanel" class="entry-panel active-panel">
-      <button id="createBtn" class="primary-btn">Create Account</button>
-      <button id="loginBtn" class="secondary-btn">Login</button>
-    </section>
+<!-- SMOKE INTRO -->
+<div id="intro" class="intro">
+  <img src="vindex-logo.png" class="intro-logo">
+  <h1 class="intro-title">Project Vindex Technologies</h1>
+</div>
 
-    <section id="createPanel" class="form-panel hidden-panel">
-      <h2>Create Account</h2>
-      <p>Establish your record.</p>
+<!-- MAIN LOGIN -->
+<div id="mainUI" class="entry-panel hidden-panel">
 
-      <input id="fullName" type="text" placeholder="Full Name" />
-      <input id="createEmail" type="email" placeholder="Email Address" />
-      <input id="createPassword" type="password" placeholder="Create Password" />
-      <input id="confirmPassword" type="password" placeholder="Confirm Password" />
+  <h1 class="main-title">PROJECT VINDEX</h1>
+  <p class="main-sub">Establish your record.</p>
 
-      <button id="submitCreateBtn" class="primary-btn">Enter Vindex</button>
-      <button id="backFromCreateBtn" class="text-btn">Back</button>
-    </section>
+  <input type="text" id="loginEmail" placeholder="Email Address">
+  <input type="password" id="loginPassword" placeholder="Password">
 
-    <section id="loginPanel" class="form-panel hidden-panel">
-      <h2>Login</h2>
-      <p>Return to your record.</p>
+  <button class="primary-btn" id="submitLoginBtn">Access Record</button>
 
-      <input id="loginEmail" type="email" placeholder="Email Address" />
-      <input id="loginPassword" type="password" placeholder="Password" />
+  <button class="secondary-btn" id="createBtn">Create Account</button>
 
-      <button id="submitLoginBtn" class="primary-btn">Access Record</button>
-      <button id="backFromLoginBtn" class="text-btn">Back</button>
-    </section>
+</div>
 
-    <div id="messageBox" class="message-box"></div>
-  </main>
-
-  <script src="./script.js?v=9000"></script>
-
-  <script>
-    window.addEventListener("load", function () {
-      const intro = document.getElementById("introScreen");
-
-      setTimeout(function () {
-        intro.classList.add("intro-exit");
-
-        setTimeout(function () {
-          intro.style.display = "none";
-        }, 1100);
-      }, 3000);
-    });
-  </script>
+<script src="script.js?v=4000"></script>
 </body>
 </html>
