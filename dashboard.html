@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project Vindex Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <link rel="stylesheet" href="./style.css?v=99" />
 </head>
 
 <body>
@@ -12,7 +13,6 @@
     <div class="dash-overlay"></div>
 
     <section class="dash-content">
-
       <header class="dash-header">
         <h1>Project Vindex</h1>
         <p>Vox Dei</p>
@@ -46,7 +46,6 @@
       </section>
 
       <button class="dash-logout" onclick="logoutUser()">Logout</button>
-
     </section>
 
     <div id="messageBox" class="message-box"></div>
@@ -55,6 +54,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const loggedIn = localStorage.getItem("vindex_logged_in");
+
       if (loggedIn !== "true") {
         window.location.href = "index.html";
       }
@@ -62,6 +62,7 @@
 
     function openSection(sectionName) {
       const messageBox = document.getElementById("messageBox");
+
       messageBox.textContent = sectionName + " coming next.";
       messageBox.classList.add("show");
 
