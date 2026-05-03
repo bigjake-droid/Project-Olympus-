@@ -15,19 +15,19 @@
       <h2>Project Vindex</h2>
       <p>Your record begins here.</p>
 
-      <button class="primary-btn" onclick="openSection('guide')">
+      <button class="primary-btn" onclick="openSection('Pro Se Guidebook')">
         Pro Se Guidebook
       </button>
 
-      <button class="secondary-btn" onclick="openSection('evidence')">
+      <button class="secondary-btn" onclick="openSection('Evidence Organizer')">
         Evidence Organizer
       </button>
 
-      <button class="secondary-btn" onclick="openSection('timeline')">
+      <button class="secondary-btn" onclick="openSection('Case Timeline')">
         Case Timeline
       </button>
 
-      <button class="secondary-btn" onclick="openSection('export')">
+      <button class="secondary-btn" onclick="openSection('Export Dossier')">
         Export Dossier
       </button>
 
@@ -40,18 +40,27 @@
   </main>
 
   <script>
-    function openSection(section) {
+    document.addEventListener("DOMContentLoaded", function () {
+      const loggedIn = localStorage.getItem("vindex_logged_in");
+
+      if (loggedIn !== "true") {
+        window.location.href = "index.html";
+      }
+    });
+
+    function openSection(sectionName) {
       const messageBox = document.getElementById("messageBox");
-      messageBox.textContent = section.toUpperCase() + " coming next.";
+
+      messageBox.textContent = sectionName + " coming next.";
       messageBox.classList.add("show");
 
-      setTimeout(() => {
+      setTimeout(function () {
         messageBox.classList.remove("show");
       }, 2000);
     }
 
     function logoutUser() {
-      localStorage.removeItem("vindex_logged_in");
+      localStorage.setItem("vindex_logged_in", "false");
       window.location.href = "index.html";
     }
   </script>
