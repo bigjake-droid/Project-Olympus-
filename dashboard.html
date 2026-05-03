@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Project Vindex Dashboard</title>
-  <link rel="stylesheet" href="style.css?v=1200" />
+
+  <link rel="stylesheet" href="./style.css?v=2000" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 </head>
-<script src="script.js?v=1200"></script>
+
 <body>
   <main class="dash-page">
     <div class="dash-overlay"></div>
@@ -19,30 +21,30 @@
     </section>
 
     <section class="dash-actions">
-      <button class="dash-card" onclick="location.href='guidebook.html?v=1200'">
+      <button class="dash-card" onclick="location.href='guidebook.html?v=2000'">
         <div class="card-icon">📖</div>
-        <span>Pro Se<br>Guidebook</span>
+        <span>Pro Se<br />Guidebook</span>
         <small>Knowledge is your weapon.</small>
         <b>→</b>
       </button>
 
       <button class="dash-card" onclick="openSection('Evidence Organizer')">
         <div class="card-icon">🔒</div>
-        <span>Evidence<br>Organizer</span>
+        <span>Evidence<br />Organizer</span>
         <small>Organize. Secure. Prepare.</small>
         <b>→</b>
       </button>
 
       <button class="dash-card" onclick="openSection('Case Timeline')">
         <div class="card-icon">⏳</div>
-        <span>Case<br>Timeline</span>
+        <span>Case<br />Timeline</span>
         <small>Every event matters.</small>
         <b>→</b>
       </button>
 
       <button class="dash-card" onclick="openSection('Export Dossier')">
         <div class="card-icon">📜</div>
-        <span>Export<br>Dossier</span>
+        <span>Export<br />Dossier</span>
         <small>Build. Export. Defend.</small>
         <b>→</b>
       </button>
@@ -57,24 +59,6 @@
     <div id="messageBox" class="message-box"></div>
   </main>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const loggedIn = localStorage.getItem("vindex_logged_in");
-
-      if (loggedIn !== "true") {
-        window.location.href = "index.html";
-      }
-    });
-
-    function openSection(sectionName) {
-      const messageBox = document.getElementById("messageBox");
-      messageBox.textContent = sectionName + " coming next.";
-      messageBox.classList.add("show");
-
-      setTimeout(function () {
-        messageBox.classList.remove("show");
-      }, 1800);
-    }
-  </script>
+  <script src="./script.js?v=2000"></script>
 </body>
 </html>
