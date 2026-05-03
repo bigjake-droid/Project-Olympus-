@@ -19,10 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
     createPanel.className = "form-panel hidden-panel";
     loginPanel.className = "form-panel hidden-panel";
 
-    setTimeout(function () {
-      panelToShow.classList.remove("hidden-panel");
-      panelToShow.classList.add("active-panel");
-    }, 80);
+    panelToShow.classList.remove("hidden-panel");
+    panelToShow.classList.add("active-panel");
   }
 
   function showMessage(text) {
@@ -31,16 +29,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setTimeout(function () {
       messageBox.classList.remove("show");
-    }, 2200);
+    }, 2000);
   }
 
   createBtn.addEventListener("click", function () {
-    localStorage.setItem("vindex_entry_mode", "create");
     showPanel(createPanel);
   });
 
   loginBtn.addEventListener("click", function () {
-    localStorage.setItem("vindex_entry_mode", "login");
     showPanel(loginPanel);
   });
 
@@ -69,28 +65,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const user = {
-      fullName: fullName,
-      email: email,
+      fullName,
+      email,
+      password,
       createdAt: new Date().toISOString()
     };
 
     localStorage.setItem("vindex_user", JSON.stringify(user));
     localStorage.setItem("vindex_logged_in", "true");
 
-    showMessage("Record established.");
-
-    setTimeout(function () {
-      document.body.innerHTML = `
-        <main class="vindex-screen">
-          <div class="dark-overlay"></div>
-          <section class="form-panel active-panel">
-            <h2>Welcome, ${fullName}</h2>
-            <p>Your record has begun.</p>
-            <button class="primary-btn" onclick="location.reload()">Continue</button>
-          </section>
-        </main>
-      `;
-    }, 1000);
+    window.location.href = "dashboard.html";
   });
 
   submitLoginBtn.addEventListener("click", function () {
@@ -104,26 +88,13 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    if (!savedUser || savedUser.email !== email) {
+    if (!savedUser || savedUser.email !== email || savedUser.password !== password) {
       showMessage("No matching record found.");
       return;
     }
 
     localStorage.setItem("vindex_logged_in", "true");
 
-    showMessage("Access granted.");
-
-    setTimeout(function () {
-      document.body.innerHTML = `
-        <main class="vindex-screen">
-          <div class="dark-overlay"></div>
-          <section class="form-panel active-panel">
-            <h2>Access Granted</h2>
-            <p>Welcome back, ${savedUser.fullName}.</p>
-            <button class="primary-btn" onclick="location.reload()">Continue</button>
-          </section>
-        </main>
-      `;
-    }, 1000);
+    window.location.href = "dashboard.html";
   });
 });
