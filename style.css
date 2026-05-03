@@ -17,6 +17,79 @@ input {
   font-family: inherit;
 }
 
+/* FINAL FORM SPLASH INTRO */
+
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background:
+    radial-gradient(circle at center, rgba(28, 70, 105, 0.22), transparent 34%),
+    radial-gradient(circle at 50% 65%, rgba(255, 130, 35, 0.13), transparent 36%),
+    #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  perspective: 1200px;
+}
+
+.intro-glow {
+  position: absolute;
+  width: 290px;
+  height: 290px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(127, 184, 255, 0.34), transparent 68%);
+  filter: blur(22px);
+  animation: introGlowPulse 3s ease-in-out infinite;
+}
+
+.intro-flare {
+  position: absolute;
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(180, 220, 255, 0.8),
+    transparent
+  );
+  transform: rotate(-18deg) translateX(-120%);
+  animation: introLightSweep 2.6s ease-in-out forwards;
+}
+
+.intro-logo {
+  position: relative;
+  z-index: 3;
+  width: 185px;
+  max-width: 68vw;
+  border-radius: 50%;
+  filter:
+    brightness(1.08)
+    contrast(1.14)
+    drop-shadow(0 0 18px rgba(127,184,255,0.32));
+  animation: vindexCoinSpin 3s ease-in-out forwards;
+}
+
+.intro-text {
+  position: relative;
+  z-index: 3;
+  margin-top: 18px;
+  font-family: "Cinzel", Georgia, serif;
+  font-size: 15px;
+  letter-spacing: 4px;
+  color: #dceeff;
+  opacity: 0;
+  text-shadow: 0 0 14px rgba(127,184,255,0.45);
+  animation: introTextReveal 2.4s ease forwards;
+  animation-delay: 0.65s;
+}
+
+.intro-exit {
+  animation: introFadeExit 1.1s ease forwards;
+}
+
 /* SPLASH / AUTH */
 
 .vindex-screen {
@@ -31,7 +104,6 @@ input {
   overflow: hidden;
 }
 
-/* lighter overlay so background shows */
 .dark-overlay {
   position: absolute;
   inset: 0;
@@ -59,13 +131,11 @@ input {
   animation: torchFlicker 2.2s infinite ease-in-out;
 }
 
-/* left torch glow */
 .vindex-screen::before {
   left: 7%;
   top: 38%;
 }
 
-/* right torch glow */
 .vindex-screen::after {
   right: 7%;
   top: 38%;
@@ -328,7 +398,7 @@ input::placeholder {
   max-width: 200px;
 }
 
-/* GUIDEBOOK — BLUE GLOW VISUAL UPGRADE */
+/* GUIDEBOOK */
 
 .guide-page {
   position: relative;
@@ -589,6 +659,79 @@ input::placeholder {
 }
 
 /* ANIMATIONS */
+
+@keyframes vindexCoinSpin {
+  0% {
+    opacity: 0;
+    transform: rotateY(0deg) scale(0.45);
+  }
+
+  22% {
+    opacity: 1;
+    transform: rotateY(180deg) scale(0.95);
+  }
+
+  48% {
+    transform: rotateY(360deg) scale(1.08);
+  }
+
+  72% {
+    transform: rotateY(540deg) scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateY(720deg) scale(0.92);
+  }
+}
+
+@keyframes introGlowPulse {
+  0%, 100% {
+    opacity: 0.32;
+    transform: scale(0.92);
+  }
+
+  50% {
+    opacity: 0.78;
+    transform: scale(1.14);
+  }
+}
+
+@keyframes introLightSweep {
+  0% {
+    opacity: 0;
+    transform: rotate(-18deg) translateX(-150%);
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(-18deg) translateX(150%);
+  }
+}
+
+@keyframes introTextReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 0.88;
+    transform: translateY(0);
+  }
+}
+
+@keyframes introFadeExit {
+  to {
+    opacity: 0;
+    transform: scale(1.08);
+    pointer-events: none;
+  }
+}
 
 @keyframes riseIn {
   from {
