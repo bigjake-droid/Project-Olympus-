@@ -3,53 +3,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Project Vindex Dashboard</title>
-
-  <link rel="stylesheet" href="./style.css?v=200" />
+  <link rel="stylesheet" href="./style.css?v=300" />
 </head>
 
 <body>
   <main class="dash-page">
     <div class="dash-overlay"></div>
 
-    <section class="dash-content">
-      <header class="dash-header">
-        <h1>Project Vindex</h1>
-        <p>Vox Dei</p>
-      </header>
+    <section class="dash-hero">
+      <div class="pv-mark">⚔</div>
 
-      <section class="dash-welcome">
-        <h2 id="welcomeName">Welcome Back</h2>
-        <p>Your record. Your cause. Your voice.</p>
-      </section>
-
-      <section class="dash-grid">
-        <button class="dash-card" onclick="openSection('Pro Se Guidebook')">
-          <span>Pro Se Guidebook</span>
-          <small>Knowledge is your weapon.</small>
-        </button>
-
-        <button class="dash-card" onclick="openSection('Evidence Organizer')">
-          <span>Evidence Organizer</span>
-          <small>Organize. Secure. Prepare.</small>
-        </button>
-
-        <button class="dash-card" onclick="openSection('Case Timeline')">
-          <span>Case Timeline</span>
-          <small>Every event matters.</small>
-        </button>
-
-        <button class="dash-card" onclick="openSection('Export Dossier')">
-          <span>Export Dossier</span>
-          <small>Build. Export. Defend.</small>
-        </button>
-      </section>
-
-      <p class="dash-motto">Leave a record that cannot be ignored.</p>
-
-      <button class="dash-logout" onclick="logoutUser()">Logout</button>
+      <h1>Project Vindex</h1>
+      <p class="latin">Vox Dei</p>
     </section>
+
+    <section class="dash-actions">
+      <button class="dash-card" onclick="openSection('Pro Se Guidebook')">
+        <div class="card-icon">📖</div>
+        <span>Pro Se<br>Guidebook</span>
+        <small>Knowledge is your weapon.</small>
+        <b>→</b>
+      </button>
+
+      <button class="dash-card" onclick="openSection('Evidence Organizer')">
+        <div class="card-icon">🔒</div>
+        <span>Evidence<br>Organizer</span>
+        <small>Organize. Secure. Prepare.</small>
+        <b>→</b>
+      </button>
+
+      <button class="dash-card" onclick="openSection('Case Timeline')">
+        <div class="card-icon">⏳</div>
+        <span>Case<br>Timeline</span>
+        <small>Every event matters.</small>
+        <b>→</b>
+      </button>
+
+      <button class="dash-card" onclick="openSection('Export Dossier')">
+        <div class="card-icon">📜</div>
+        <span>Export<br>Dossier</span>
+        <small>Build. Export. Defend.</small>
+        <b>→</b>
+      </button>
+    </section>
+
+    <footer class="dash-footer">
+      <button onclick="openSection('User')">User</button>
+      <p>Leave a record that cannot be ignored.</p>
+      <button onclick="openSection('Settings')">Settings ⚙</button>
+    </footer>
 
     <div id="messageBox" class="message-box"></div>
   </main>
@@ -57,33 +60,20 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const loggedIn = localStorage.getItem("vindex_logged_in");
-      const user = JSON.parse(localStorage.getItem("vindex_user"));
 
       if (loggedIn !== "true") {
         window.location.href = "index.html";
-        return;
-      }
-
-      if (user && user.fullName) {
-        document.getElementById("welcomeName").textContent =
-          "Welcome Back, " + user.fullName;
       }
     });
 
     function openSection(sectionName) {
       const messageBox = document.getElementById("messageBox");
-
       messageBox.textContent = sectionName + " coming next.";
       messageBox.classList.add("show");
 
       setTimeout(function () {
         messageBox.classList.remove("show");
       }, 1800);
-    }
-
-    function logoutUser() {
-      localStorage.setItem("vindex_logged_in", "false");
-      window.location.href = "index.html";
     }
   </script>
 </body>
