@@ -1,4 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const intro = document.getElementById("intro");
+
+  if (intro) {
+    setTimeout(function () {
+      intro.classList.add("intro-exit");
+    }, 4300);
+
+    setTimeout(function () {
+      intro.style.display = "none";
+    }, 5600);
+  }
+
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
   const protectedPages = ["dashboard.html", "guidebook.html"];
 
@@ -6,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const loggedIn = localStorage.getItem("vindex_logged_in");
 
     if (loggedIn !== "true") {
-      window.location.href = "index.html?v=2000";
+      window.location.href = "index.html?v=10000";
       return;
     }
   }
@@ -73,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("vindex_user", JSON.stringify(user));
       localStorage.setItem("vindex_logged_in", "true");
 
-      window.location.href = "dashboard.html?v=2000";
+      window.location.href = "dashboard.html?v=10000";
     });
   }
 
@@ -96,9 +108,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
       localStorage.setItem("vindex_logged_in", "true");
 
-      window.location.href = "dashboard.html?v=2000";
+      window.location.href = "dashboard.html?v=10000";
     });
   }
+
+  const bg = document.querySelector(".parallax-bg");
+  const panel = document.querySelector(".entry-panel");
+
+  document.addEventListener("pointermove", function (event) {
+    if (!bg) return;
+
+    const x = (event.clientX / window.innerWidth - 0.5) * 18;
+    const y = (event.clientY / window.innerHeight - 0.5) * 18;
+
+    bg.style.transform = `scale(1.06) translate(${x}px, ${y}px)`;
+
+    if (panel) {
+      panel.style.transform = `translate(${-x * 0.18}px, ${-y * 0.18}px)`;
+    }
+  });
 });
 
 function showPanel(panelToShow) {
@@ -119,16 +147,22 @@ function openSection(sectionName) {
 }
 
 function goBack() {
-  window.location.href = "dashboard.html?v=2000";
+  window.location.href = "dashboard.html?v=10000";
 }
 
 function toggleCard(card) {
   card.classList.toggle("active");
+
+  const mark = card.querySelector(".toggle-mark");
+
+  if (mark) {
+    mark.textContent = card.classList.contains("active") ? "−" : "+";
+  }
 }
 
 function logoutUser() {
   localStorage.setItem("vindex_logged_in", "false");
-  window.location.href = "index.html?v=2000";
+  window.location.href = "index.html?v=10000";
 }
 
 function showMessage(text) {
