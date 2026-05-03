@@ -1,100 +1,113 @@
+// ================================
+// VINDEX CORE SCRIPT SYSTEM
+// ================================
+
 document.addEventListener("DOMContentLoaded", function () {
-  const splashPanel = document.getElementById("splashPanel");
-  const createPanel = document.getElementById("createPanel");
-  const loginPanel = document.getElementById("loginPanel");
 
-  const createBtn = document.getElementById("createBtn");
-  const loginBtn = document.getElementById("loginBtn");
+  // ================================
+  // AUTH GUARD (protect pages)
+  // ================================
 
-  const submitCreateBtn = document.getElementById("submitCreateBtn");
-  const submitLoginBtn = document.getElementById("submitLoginBtn");
+  const protectedPages = ["dashboard.html", "guidebook.html"];
 
-  const backFromCreateBtn = document.getElementById("backFromCreateBtn");
-  const backFromLoginBtn = document.getElementById("backFromLoginBtn");
+  const currentPage = window.location.pathname.split("/").pop();
 
-  const messageBox = document.getElementById("messageBox");
+  if (protectedPages.includes(currentPage)) {
+    const loggedIn = localStorage.getItem("vindex_logged_in");
 
-  function showPanel(panelToShow) {
-    splashPanel.className = "entry-panel hidden-panel";
-    createPanel.className = "form-panel hidden-panel";
-    loginPanel.className = "form-panel hidden-panel";
-
-    panelToShow.classList.remove("hidden-panel");
-    panelToShow.classList.add("active-panel");
+    if (loggedIn !== "true") {
+      window.location.href = "index.html?v=1200";
+      return;
+    }
   }
 
-  function showMessage(text) {
-    messageBox.textContent = text;
-    messageBox.classList.add("show");
+  // ================================
+  // LOAD USER NAME (future use)
+  // ================================
 
-    setTimeout(function () {
-      messageBox.classList.remove("show");
-    }, 2000);
+  const savedUser = JSON.parse(localStorage.getItem("vindex_user"));
+
+  if (savedUser && savedUser.fullName) {
+    const nameTargets = document.querySelectorAll(".user-name");
+
+    nameTargets.forEach(el => {
+      el.textContent = savedUser.fullName;
+    });
   }
 
-  createBtn.addEventListener("click", function () {
-    showPanel(createPanel);
-  });
-
-  loginBtn.addEventListener("click", function () {
-    showPanel(loginPanel);
-  });
-
-  backFromCreateBtn.addEventListener("click", function () {
-    showPanel(splashPanel);
-  });
-
-  backFromLoginBtn.addEventListener("click", function () {
-    showPanel(splashPanel);
-  });
-
-  submitCreateBtn.addEventListener("click", function () {
-    const fullName = document.getElementById("fullName").value.trim();
-    const email = document.getElementById("createEmail").value.trim().toLowerCase();
-    const password = document.getElementById("createPassword").value.trim();
-    const confirmPassword = document.getElementById("confirmPassword").value.trim();
-
-    if (!fullName || !email || !password || !confirmPassword) {
-      showMessage("Complete all fields.");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      showMessage("Passwords do not match.");
-      return;
-    }
-
-    const user = {
-      fullName: fullName,
-      email: email,
-      password: password,
-      createdAt: new Date().toISOString()
-    };
-
-    localStorage.setItem("vindex_user", JSON.stringify(user));
-    localStorage.setItem("vindex_logged_in", "true");
-
-    window.location.href = "dashboard.html?v=300";
-  });
-
-  submitLoginBtn.addEventListener("click", function () {
-    const email = document.getElementById("loginEmail").value.trim().toLowerCase();
-    const password = document.getElementById("loginPassword").value.trim();
-
-    const savedUser = JSON.parse(localStorage.getItem("vindex_user"));
-
-    if (!email || !password) {
-      showMessage("Enter email and password.");
-      return;
-    }
-
-    if (!savedUser || savedUser.email !== email || savedUser.password !== password) {
-      showMessage("No matching record found.");
-      return;
-    }
-
-    localStorage.setItem("vindex_logged_in", "true");
-
-    window.location.href = "dashboard.html?v=300";
-  });
 });
+
+
+// ================================
+// NAVIGATION
+// ================================
+
+function goBack() {
+  window.location.href = "dashboard.html?v=1200";
+}
+
+
+// ================================
+// DASHBOARD ACTIONS
+// ================================
+
+function openSection(sectionName) {
+
+  switch (sectionName) {
+    case "Pro Se Guidebook":
+      window.location.href = "guidebook.html?v=1200";
+      break;
+
+    case "Evidence Organizer":
+      showMessage("Evidence Organizer coming next.");
+      break;
+
+    case "Case Timeline":
+      showMessage("Case Timeline coming next.");
+      break;
+
+    case "Export Dossier":
+      showMessage("Export system coming next.");
+      break;
+
+    default:
+      showMessage(sectionName + " coming next.");
+  }
+}
+
+
+// ================================
+// GUIDEBOOK INTERACTION
+// ================================
+
+function toggleCard(card) {
+  card.classList.toggle("active");
+}
+
+
+// ================================
+// AUTH SYSTEM
+// ================================
+
+function logoutUser() {
+  localStorage.setItem("vindex_logged_in", "false");
+  window.location.href = "index.html?v=1200";
+}
+
+
+// ================================
+// UI FEEDBACK SYSTEM
+// ================================
+
+function showMessage(text) {
+  let box = document.getElementById("messageBox");
+
+  if (!box) return;
+
+  box.textContent = text;
+  box.classList.add("show");
+
+  setTimeout(() => {
+    box.classList.remove("show");
+  }, 1800);
+}
