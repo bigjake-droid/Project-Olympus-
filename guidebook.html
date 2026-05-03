@@ -2,45 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Pro Se Guidebook</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css?v=999" />
-
-  <!-- FONTS -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=1200" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
 
 <body>
   <main class="guide-page">
-
     <div class="dash-overlay"></div>
 
-    <!-- HERO -->
     <section class="guide-hero">
-
       <button class="back-btn" onclick="goBack()">← Return to Vindex</button>
 
-      <h1>PRO SE GUIDEBOOK</h1>
-
+      <h1>Pro Se Guidebook</h1>
       <p class="latin">A system, not a guess.</p>
-
-      <p class="hero-sub">
-        Records win cases. Memory loses them.
-      </p>
-
+      <p class="hero-sub">Records win cases. Memory loses them.</p>
     </section>
 
-    <!-- CONTENT -->
     <section class="guide-content">
-
       <div class="guide-card" onclick="toggleCard(this)">
         <h2>⚔ First Rule</h2>
         <div class="guide-body">
           <p>
             Do not rely on memory. Courts care about records, dates, documents,
-            contradictions, and proof. If it matters—write it down.
+            contradictions, and proof. If it matters, write it down.
           </p>
         </div>
       </div>
@@ -76,20 +64,25 @@
           </p>
         </div>
       </div>
-
     </section>
-
   </main>
 
   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const loggedIn = localStorage.getItem("vindex_logged_in");
+
+      if (loggedIn !== "true") {
+        window.location.href = "index.html?v=1200";
+      }
+    });
+
     function goBack() {
-      window.location.href = "dashboard.html";
+      window.location.href = "dashboard.html?v=1200";
     }
 
     function toggleCard(card) {
       card.classList.toggle("active");
     }
   </script>
-
 </body>
 </html>
