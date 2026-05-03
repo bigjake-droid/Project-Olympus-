@@ -1,39 +1,54 @@
+/* ========================= */
+/* RESET                     */
+/* ========================= */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   min-height: 100%;
   background: #000;
   font-family: Georgia, "Times New Roman", serif;
 }
 
-/* SPLASH / LOGIN */
+/* ========================= */
+/* SPLASH / LOGIN / CREATE   */
+/* ========================= */
 
 .vindex-screen {
   position: relative;
   min-height: 100vh;
   background: url("vindex-bg.png") no-repeat center/cover;
+
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+
+  padding: 24px;
+  overflow: hidden;
 }
 
 .dark-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.72);
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1;
 }
 
 .entry-panel,
 .form-panel {
   position: relative;
   z-index: 2;
-  width: 90%;
-  max-width: 390px;
+
+  width: 100%;
+  max-width: 400px;
+
   text-align: center;
+  margin-bottom: 42px;
 }
 
 .hidden-panel {
@@ -44,9 +59,23 @@ html, body {
   display: block;
 }
 
+.form-panel {
+  padding: 22px;
+  border: 1px solid rgba(216, 183, 109, 0.75);
+  border-radius: 18px;
+
+  background: rgba(0, 0, 0, 0.72);
+
+  box-shadow:
+    0 0 24px rgba(0, 0, 0, 0.7),
+    inset 0 0 16px rgba(216, 183, 109, 0.08);
+}
+
 .form-panel h2 {
   color: #d8b76d;
-  font-size: 22px;
+  font-size: 23px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   margin-bottom: 8px;
 }
 
@@ -58,53 +87,90 @@ html, body {
 
 input {
   width: 100%;
-  padding: 13px;
+  padding: 14px;
   margin: 7px 0;
-  border-radius: 8px;
-  border: 1px solid rgba(216,183,109,0.6);
-  background: rgba(0,0,0,0.7);
+
+  border-radius: 10px;
+  border: 1px solid rgba(216, 183, 109, 0.65);
+
+  background: rgba(0, 0, 0, 0.72);
   color: #f5e4b0;
+
   font-size: 15px;
+  outline: none;
 }
+
+input::placeholder {
+  color: rgba(245, 228, 176, 0.55);
+}
+
+input:focus {
+  border-color: #f2d88c;
+  box-shadow: 0 0 12px rgba(216, 183, 109, 0.25);
+}
+
+/* ========================= */
+/* BUTTONS                   */
+/* ========================= */
 
 .primary-btn,
 .secondary-btn {
   width: 100%;
-  padding: 15px;
+  padding: 16px;
   margin-top: 10px;
-  border-radius: 12px;
-  font-weight: bold;
-  letter-spacing: 2px;
+
+  border-radius: 13px;
+
+  font-weight: 800;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
+  font-size: 14px;
+
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .primary-btn {
-  background: linear-gradient(135deg, #e1c16e, #b98e3e);
+  background: linear-gradient(135deg, #f1d88f, #d2ad5e, #9b7436);
   color: #050505;
   border: 1px solid #f2d88c;
+
+  box-shadow:
+    0 0 18px rgba(216, 183, 109, 0.35),
+    inset 0 0 10px rgba(255, 255, 255, 0.18);
 }
 
 .secondary-btn {
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.52);
   color: #d8b76d;
-  border: 1px solid #d8b76d;
+  border: 1px solid rgba(216, 183, 109, 0.85);
+}
+
+.primary-btn:active,
+.secondary-btn:active,
+.dash-card:active {
+  transform: scale(0.98);
 }
 
 .text-btn {
   margin-top: 12px;
   background: transparent;
   border: none;
-  color: #ddd;
+  color: rgba(255, 255, 255, 0.78);
   font-size: 15px;
+  cursor: pointer;
 }
 
-/* DASHBOARD */
+/* ========================= */
+/* DASHBOARD                 */
+/* ========================= */
 
 .dash-page {
   position: relative;
   min-height: 100vh;
-  background: url("vindex-bg.png") no-repeat center/cover;
+
+  background: url("vindex-dashboard.png") no-repeat center/cover;
+
   color: #d8b76d;
   overflow-x: hidden;
 }
@@ -112,42 +178,54 @@ input {
 .dash-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.84);
   z-index: 1;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.58),
+      rgba(0, 0, 0, 0.88)
+    );
 }
 
 .dash-content {
   position: relative;
   z-index: 2;
+
   min-height: 100vh;
   width: 100%;
   max-width: 430px;
+
   margin: 0 auto;
-  padding: 34px 20px 28px;
+  padding: 36px 20px 30px;
 }
 
 .dash-header {
   text-align: center;
-  margin-bottom: 26px;
+  margin-bottom: 28px;
 }
 
 .dash-header h1 {
-  font-size: 26px;
+  font-size: 27px;
   line-height: 1.1;
   letter-spacing: 3px;
   text-transform: uppercase;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
 }
 
 .dash-header p {
-  font-size: 14px;
+  font-size: 15px;
   margin-top: 5px;
   color: #e8d6a0;
-  opacity: 0.8;
+  opacity: 0.88;
 }
 
 .dash-welcome {
-  margin-bottom: 18px;
-  text-align: left;
+  margin-bottom: 20px;
+  padding: 16px;
+
+  border-left: 2px solid rgba(216, 183, 109, 0.7);
+  background: rgba(0, 0, 0, 0.32);
 }
 
 .dash-welcome h2 {
@@ -158,25 +236,35 @@ input {
 .dash-welcome p {
   font-size: 15px;
   color: #e8d6a0;
-  opacity: 0.85;
+  opacity: 0.88;
   margin-top: 4px;
 }
 
 .dash-grid {
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 14px;
 }
 
 .dash-card {
   width: 100%;
-  padding: 17px;
-  border-radius: 14px;
-  border: 1px solid rgba(216,183,109,0.75);
-  background: rgba(0,0,0,0.62);
+
+  padding: 18px;
+
+  border-radius: 15px;
+  border: 1px solid rgba(216, 183, 109, 0.78);
+
+  background: rgba(0, 0, 0, 0.62);
   color: #d8b76d;
+
   text-align: left;
   font-family: Georgia, "Times New Roman", serif;
+
+  box-shadow:
+    0 0 18px rgba(0, 0, 0, 0.55),
+    inset 0 0 10px rgba(216, 183, 109, 0.05);
+
+  cursor: pointer;
 }
 
 .dash-card span {
@@ -189,21 +277,38 @@ input {
 .dash-card small {
   display: block;
   font-size: 14px;
-  margin-top: 5px;
+  margin-top: 6px;
   color: #e8d6a0;
-  opacity: 0.85;
+  opacity: 0.88;
+}
+
+.dash-motto {
+  margin-top: 24px;
+  text-align: center;
+
+  color: #d8b76d;
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  opacity: 0.82;
 }
 
 .dash-logout {
   display: block;
-  margin: 26px auto 0;
+  margin: 24px auto 0;
+
   background: transparent;
   border: none;
-  color: rgba(255,255,255,0.72);
+
+  color: rgba(255, 255, 255, 0.72);
   font-size: 15px;
+
+  cursor: pointer;
 }
 
-/* MESSAGE */
+/* ========================= */
+/* MESSAGE                   */
+/* ========================= */
 
 .message-box {
   position: fixed;
@@ -211,15 +316,46 @@ input {
   left: 18px;
   right: 18px;
   z-index: 9;
+
   display: none;
+
   padding: 13px;
-  background: rgba(0,0,0,0.88);
-  border: 1px solid rgba(216,183,109,0.75);
+
+  background: rgba(0, 0, 0, 0.88);
+  border: 1px solid rgba(216, 183, 109, 0.75);
   border-radius: 12px;
+
   color: #e8d6a0;
   text-align: center;
 }
 
 .message-box.show {
   display: block;
+}
+
+/* ========================= */
+/* SMALL PHONES              */
+/* ========================= */
+
+@media (max-width: 420px) {
+  .vindex-screen {
+    padding: 20px;
+  }
+
+  .entry-panel,
+  .form-panel {
+    margin-bottom: 34px;
+  }
+
+  .dash-content {
+    padding: 32px 18px 28px;
+  }
+
+  .dash-header h1 {
+    font-size: 25px;
+  }
+
+  .dash-card span {
+    font-size: 19px;
+  }
 }
