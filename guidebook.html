@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <title>Pro Se Guidebook</title>
 
-  <link rel="stylesheet" href="./style.css?v=4000" />
+  <link rel="stylesheet" href="./style.css?v=5000" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 </head>
 
 <body>
   <main class="guide-page">
     <div class="guide-overlay"></div>
-    <div class="guide-sheen"></div>
 
     <section class="guide-wrap">
+
       <button class="guide-back" onclick="goBack()">← Return to Vindex</button>
 
       <header class="guide-hero">
@@ -27,162 +27,95 @@
 
       <section class="guide-command">
         <span>Directive</span>
-        <p>
-          Build the record before the record is built against you.
-        </p>
+        <p>Build the record before the record is built against you.</p>
       </section>
 
       <section class="guide-grid">
 
+        <!-- CARD -->
         <article class="guide-card active" onclick="toggleCard(this)">
-          <div class="guide-card-title">
-            <h2>01 · Before Court</h2>
+          <div class="guide-header">
+            <div class="guide-badge">01</div>
+            <div>
+              <h2>Before Court</h2>
+              <small>TACTIC</small>
+            </div>
             <span class="toggle-mark">−</span>
           </div>
+
           <div class="guide-body">
-            <p>Know your charge, deadline, hearing type, and what relief you are asking for before you walk in.</p>
-            <ul>
-              <li>Bring printed copies.</li>
-              <li>Know your timeline cold.</li>
-              <li>Keep your request simple.</li>
-            </ul>
+            <div class="guide-line-item">Know your charge.</div>
+            <div class="guide-line-item">Know your deadlines.</div>
+            <div class="guide-line-item">Know what you are asking for.</div>
           </div>
         </article>
 
         <article class="guide-card" onclick="toggleCard(this)">
-          <div class="guide-card-title">
-            <h2>02 · Evidence Rules</h2>
+          <div class="guide-header">
+            <div class="guide-badge">02</div>
+            <div>
+              <h2>Evidence Rules</h2>
+              <small>EVIDENCE</small>
+            </div>
             <span class="toggle-mark">+</span>
           </div>
+
           <div class="guide-body">
-            <p>Evidence needs context. A screenshot without date, source, and explanation is weaker than it should be.</p>
-            <ul>
-              <li>Label every exhibit.</li>
-              <li>Track where it came from.</li>
-              <li>Explain why it matters.</li>
-            </ul>
+            <div class="guide-line-item">Label every exhibit.</div>
+            <div class="guide-line-item">Track its source.</div>
+            <div class="guide-line-item">Explain why it matters.</div>
           </div>
         </article>
 
         <article class="guide-card" onclick="toggleCard(this)">
-          <div class="guide-card-title">
-            <h2>03 · Motions</h2>
+          <div class="guide-header">
+            <div class="guide-badge">03</div>
+            <div>
+              <h2>Motions</h2>
+              <small>STRUCTURE</small>
+            </div>
             <span class="toggle-mark">+</span>
           </div>
+
           <div class="guide-body">
-            <p>A motion should identify the problem, cite the support, and ask for a specific remedy.</p>
-            <ul>
-              <li>Issue.</li>
-              <li>Facts.</li>
-              <li>Legal basis.</li>
-              <li>Relief requested.</li>
-            </ul>
+            <div class="guide-line-item">State the issue.</div>
+            <div class="guide-line-item">Provide the facts.</div>
+            <div class="guide-line-item">Ask for relief.</div>
           </div>
         </article>
 
         <article class="guide-card" onclick="toggleCard(this)">
-          <div class="guide-card-title">
-            <h2>04 · Deadlines</h2>
+          <div class="guide-header">
+            <div class="guide-badge">04</div>
+            <div>
+              <h2>Deadlines</h2>
+              <small>CRITICAL</small>
+            </div>
             <span class="toggle-mark">+</span>
           </div>
-          <div class="guide-body">
-            <p>Deadlines are traps for the unorganized. Track every court date, filing date, response date, and appeal window.</p>
-            <ul>
-              <li>Calendar it immediately.</li>
-              <li>Set reminders.</li>
-              <li>Keep proof of filing.</li>
-            </ul>
-          </div>
-        </article>
 
-        <article class="guide-card" onclick="toggleCard(this)">
-          <div class="guide-card-title">
-            <h2>05 · Hearings</h2>
-            <span class="toggle-mark">+</span>
-          </div>
           <div class="guide-body">
-            <p>At a hearing, do not chase every rabbit. Lead with the cleanest issue and strongest proof.</p>
-            <ul>
-              <li>Be brief.</li>
-              <li>Stay factual.</li>
-              <li>Ask clearly.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="guide-card" onclick="toggleCard(this)">
-          <div class="guide-card-title">
-            <h2>06 · Cross-Examination</h2>
-            <span class="toggle-mark">+</span>
-          </div>
-          <div class="guide-body">
-            <p>Ask controlled questions. One fact per question. Do not argue with the witness.</p>
-            <ul>
-              <li>Use short questions.</li>
-              <li>Use prior statements.</li>
-              <li>Stop when you get the point.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="guide-card" onclick="toggleCard(this)">
-          <div class="guide-card-title">
-            <h2>07 · Common Mistakes</h2>
-            <span class="toggle-mark">+</span>
-          </div>
-          <div class="guide-body">
-            <p>Most people lose ground because their proof is scattered, not because they have no proof.</p>
-            <ul>
-              <li>Do not submit messy packets.</li>
-              <li>Do not miss deadlines.</li>
-              <li>Do not rely on verbal promises.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="guide-card" onclick="toggleCard(this)">
-          <div class="guide-card-title">
-            <h2>08 · Emergency Checklist</h2>
-            <span class="toggle-mark">+</span>
-          </div>
-          <div class="guide-body">
-            <p>When pressure hits, simplify. Facts first. Timeline second. Relief third.</p>
-            <ul>
-              <li>What happened?</li>
-              <li>When did it happen?</li>
-              <li>Where is the proof?</li>
-              <li>What do you want the court to do?</li>
-            </ul>
+            <div class="guide-line-item">Calendar everything.</div>
+            <div class="guide-line-item">Set reminders.</div>
+            <div class="guide-line-item">Keep proof of filing.</div>
           </div>
         </article>
 
       </section>
     </section>
-
-    <div id="messageBox" class="message-box"></div>
   </main>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const loggedIn = localStorage.getItem("vindex_logged_in");
-
-      if (loggedIn !== "true") {
-        window.location.href = "index.html?v=4000";
-      }
-    });
-
     function goBack() {
-      window.location.href = "dashboard.html?v=4000";
+      window.location.href = "dashboard.html?v=5000";
     }
 
     function toggleCard(card) {
       card.classList.toggle("active");
-
       const mark = card.querySelector(".toggle-mark");
-      if (mark) {
-        mark.textContent = card.classList.contains("active") ? "−" : "+";
-      }
+      mark.textContent = card.classList.contains("active") ? "−" : "+";
     }
   </script>
+
 </body>
 </html>
