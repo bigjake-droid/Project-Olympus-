@@ -68,5 +68,15 @@
 
     </section>
   </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const loggedIn = localStorage.getItem("vindex_logged_in");
+
+      if (loggedIn !== "true") {
+        window.location.href = "index.html";
+      }
+    });
+  </script>
 </body>
 </html>
