@@ -1,113 +1,145 @@
-// ================================
-// VINDEX CORE SCRIPT SYSTEM
-// ================================
-
 document.addEventListener("DOMContentLoaded", function () {
-
-  // ================================
-  // AUTH GUARD (protect pages)
-  // ================================
-
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
   const protectedPages = ["dashboard.html", "guidebook.html"];
-
-  const currentPage = window.location.pathname.split("/").pop();
 
   if (protectedPages.includes(currentPage)) {
     const loggedIn = localStorage.getItem("vindex_logged_in");
 
     if (loggedIn !== "true") {
-      window.location.href = "index.html?v=1200";
+      window.location.href = "index.html?v=2000";
       return;
     }
   }
 
-  // ================================
-  // LOAD USER NAME (future use)
-  // ================================
+  const splashPanel = document.getElementById("splashPanel");
+  const createPanel = document.getElementById("createPanel");
+  const loginPanel = document.getElementById("loginPanel");
 
-  const savedUser = JSON.parse(localStorage.getItem("vindex_user"));
+  const createBtn = document.getElementById("createBtn");
+  const loginBtn = document.getElementById("loginBtn");
 
-  if (savedUser && savedUser.fullName) {
-    const nameTargets = document.querySelectorAll(".user-name");
+  const submitCreateBtn = document.getElementById("submitCreateBtn");
+  const submitLoginBtn = document.getElementById("submitLoginBtn");
 
-    nameTargets.forEach(el => {
-      el.textContent = savedUser.fullName;
+  const backFromCreateBtn = document.getElementById("backFromCreateBtn");
+  const backFromLoginBtn = document.getElementById("backFromLoginBtn");
+
+  if (createBtn && loginBtn && splashPanel && createPanel && loginPanel) {
+    createBtn.addEventListener("click", function () {
+      showPanel(createPanel);
+    });
+
+    loginBtn.addEventListener("click", function () {
+      showPanel(loginPanel);
     });
   }
 
+  if (backFromCreateBtn && splashPanel) {
+    backFromCreateBtn.addEventListener("click", function () {
+      showPanel(splashPanel);
+    });
+  }
+
+  if (backFromLoginBtn && splashPanel) {
+    backFromLoginBtn.addEventListener("click", function () {
+      showPanel(splashPanel);
+    });
+  }
+
+  if (submitCreateBtn) {
+    submitCreateBtn.addEventListener("click", function () {
+      const fullName = document.getElementById("fullName").value.trim();
+      const email = document.getElementById("createEmail").value.trim().toLowerCase();
+      const password = document.getElementById("createPassword").value.trim();
+      const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+      if (!fullName || !email || !password || !confirmPassword) {
+        showMessage("Complete all fields.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        showMessage("Passwords do not match.");
+        return;
+      }
+
+      const user = {
+        fullName: fullName,
+        email: email,
+        password: password,
+        createdAt: new Date().toISOString()
+      };
+
+      localStorage.setItem("vindex_user", JSON.stringify(user));
+      localStorage.setItem("vindex_logged_in", "true");
+
+      window.location.href = "dashboard.html?v=2000";
+    });
+  }
+
+  if (submitLoginBtn) {
+    submitLoginBtn.addEventListener("click", function () {
+      const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+      const password = document.getElementById("loginPassword").value.trim();
+
+      const savedUser = JSON.parse(localStorage.getItem("vindex_user"));
+
+      if (!email || !password) {
+        showMessage("Enter email and password.");
+        return;
+      }
+
+      if (!savedUser || savedUser.email !== email || savedUser.password !== password) {
+        showMessage("No matching record found.");
+        return;
+      }
+
+      localStorage.setItem("vindex_logged_in", "true");
+
+      window.location.href = "dashboard.html?v=2000";
+    });
+  }
 });
 
+function showPanel(panelToShow) {
+  const splashPanel = document.getElementById("splashPanel");
+  const createPanel = document.getElementById("createPanel");
+  const loginPanel = document.getElementById("loginPanel");
 
-// ================================
-// NAVIGATION
-// ================================
+  if (splashPanel) splashPanel.className = "entry-panel hidden-panel";
+  if (createPanel) createPanel.className = "form-panel hidden-panel";
+  if (loginPanel) loginPanel.className = "form-panel hidden-panel";
 
-function goBack() {
-  window.location.href = "dashboard.html?v=1200";
+  panelToShow.classList.remove("hidden-panel");
+  panelToShow.classList.add("active-panel");
 }
-
-
-// ================================
-// DASHBOARD ACTIONS
-// ================================
 
 function openSection(sectionName) {
-
-  switch (sectionName) {
-    case "Pro Se Guidebook":
-      window.location.href = "guidebook.html?v=1200";
-      break;
-
-    case "Evidence Organizer":
-      showMessage("Evidence Organizer coming next.");
-      break;
-
-    case "Case Timeline":
-      showMessage("Case Timeline coming next.");
-      break;
-
-    case "Export Dossier":
-      showMessage("Export system coming next.");
-      break;
-
-    default:
-      showMessage(sectionName + " coming next.");
-  }
+  showMessage(sectionName + " coming next.");
 }
 
-
-// ================================
-// GUIDEBOOK INTERACTION
-// ================================
+function goBack() {
+  window.location.href = "dashboard.html?v=2000";
+}
 
 function toggleCard(card) {
   card.classList.toggle("active");
 }
 
-
-// ================================
-// AUTH SYSTEM
-// ================================
-
 function logoutUser() {
   localStorage.setItem("vindex_logged_in", "false");
-  window.location.href = "index.html?v=1200";
+  window.location.href = "index.html?v=2000";
 }
 
-
-// ================================
-// UI FEEDBACK SYSTEM
-// ================================
-
 function showMessage(text) {
-  let box = document.getElementById("messageBox");
+  const messageBox = document.getElementById("messageBox");
 
-  if (!box) return;
+  if (!messageBox) return;
 
-  box.textContent = text;
-  box.classList.add("show");
+  messageBox.textContent = text;
+  messageBox.classList.add("show");
 
-  setTimeout(() => {
-    box.classList.remove("show");
+  setTimeout(function () {
+    messageBox.classList.remove("show");
   }, 1800);
 }
