@@ -50,9 +50,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   submitCreateBtn.addEventListener("click", function () {
     const fullName = document.getElementById("fullName").value.trim();
-    const email = document.getElementById("createEmail").value.trim();
-    const password = document.getElementById("createPassword").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
+    const email = document.getElementById("createEmail").value.trim().toLowerCase();
+    const password = document.getElementById("createPassword").value.trim();
+    const confirmPassword = document.getElementById("confirmPassword").value.trim();
 
     if (!fullName || !email || !password || !confirmPassword) {
       showMessage("Complete all fields.");
@@ -65,21 +65,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const user = {
-      fullName,
-      email,
-      password,
+      fullName: fullName,
+      email: email,
+      password: password,
       createdAt: new Date().toISOString()
     };
 
     localStorage.setItem("vindex_user", JSON.stringify(user));
     localStorage.setItem("vindex_logged_in", "true");
 
-    window.location.href = "dashboard.html";
+    window.location.href = "dashboard.html?v=200";
   });
 
   submitLoginBtn.addEventListener("click", function () {
-    const email = document.getElementById("loginEmail").value.trim();
-    const password = document.getElementById("loginPassword").value;
+    const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+    const password = document.getElementById("loginPassword").value.trim();
 
     const savedUser = JSON.parse(localStorage.getItem("vindex_user"));
 
@@ -95,6 +95,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     localStorage.setItem("vindex_logged_in", "true");
 
-    window.location.href = "dashboard.html";
+    window.location.href = "dashboard.html?v=200";
   });
 });
