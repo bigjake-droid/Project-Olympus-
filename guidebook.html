@@ -6,64 +6,131 @@
 
   <title>Pro Se Guidebook</title>
 
-  <link rel="stylesheet" href="style.css?v=1200" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=1300" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 </head>
-<script src="script.js?v=1200"></script>
+
 <body>
   <main class="guide-page">
-    <div class="dash-overlay"></div>
+    <div class="guide-overlay"></div>
 
-    <section class="guide-hero">
-      <button class="back-btn" onclick="goBack()">← Return to Vindex</button>
+    <section class="guide-wrap">
 
-      <h1>Pro Se Guidebook</h1>
-      <p class="latin">A system, not a guess.</p>
-      <p class="hero-sub">Records win cases. Memory loses them.</p>
-    </section>
+      <button class="guide-back" onclick="goBack()">← Return to Vindex</button>
 
-    <section class="guide-content">
-      <div class="guide-card" onclick="toggleCard(this)">
-        <h2>⚔ First Rule</h2>
-        <div class="guide-body">
-          <p>
-            Do not rely on memory. Courts care about records, dates, documents,
-            contradictions, and proof. If it matters, write it down.
-          </p>
-        </div>
-      </div>
+      <header class="guide-hero">
+        <p class="guide-kicker">PROJECT VINDEX FIELD MANUAL</p>
+        <h1>Pro Se Guidebook</h1>
+        <p class="guide-subtitle">A system, not a guess.</p>
+        <p class="guide-line">Records win cases. Memory loses them.</p>
+      </header>
 
-      <div class="guide-card" onclick="toggleCard(this)">
-        <h2>📖 What Pro Se Means</h2>
-        <div class="guide-body">
-          <p>
-            Pro se means representing yourself. Not guessing. Not ranting.
-            It means building a disciplined record.
-          </p>
-        </div>
-      </div>
+      <section class="guide-alert">
+        <strong>Rule One:</strong>
+        If it matters, document it. If it is not documented, expect it to be disputed.
+      </section>
 
-      <div class="guide-card" onclick="toggleCard(this)">
-        <h2>🛡 Core Weapons</h2>
-        <div class="guide-body">
-          <ul>
-            <li>Timeline of events</li>
-            <li>Evidence index</li>
-            <li>Written communication</li>
-            <li>Contradictions in statements</li>
-            <li>Deadlines and filings</li>
-          </ul>
-        </div>
-      </div>
+      <section class="guide-grid">
 
-      <div class="guide-card" onclick="toggleCard(this)">
-        <h2>🎯 Objective</h2>
-        <div class="guide-body">
-          <p>
-            You are not telling a story. You are building a record that forces truth.
-          </p>
-        </div>
-      </div>
+        <article class="guide-card active" onclick="toggleCard(this)">
+          <h2>01 · Before Court</h2>
+          <div class="guide-body">
+            <p>Know your charge, deadline, hearing type, and what relief you are asking for before you walk in.</p>
+            <ul>
+              <li>Bring printed copies.</li>
+              <li>Know your timeline cold.</li>
+              <li>Keep your request simple.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="guide-card" onclick="toggleCard(this)">
+          <h2>02 · Evidence Rules</h2>
+          <div class="guide-body">
+            <p>Evidence needs context. A screenshot without date, source, and explanation is weaker than it should be.</p>
+            <ul>
+              <li>Label every exhibit.</li>
+              <li>Track where it came from.</li>
+              <li>Explain why it matters.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="guide-card" onclick="toggleCard(this)">
+          <h2>03 · Motions</h2>
+          <div class="guide-body">
+            <p>A motion should identify the problem, cite the support, and ask for a specific remedy.</p>
+            <ul>
+              <li>Issue.</li>
+              <li>Facts.</li>
+              <li>Legal basis.</li>
+              <li>Relief requested.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="guide-card" onclick="toggleCard(this)">
+          <h2>04 · Deadlines</h2>
+          <div class="guide-body">
+            <p>Deadlines are traps for the unorganized. Track every court date, filing date, response date, and appeal window.</p>
+            <ul>
+              <li>Calendar it immediately.</li>
+              <li>Set reminders.</li>
+              <li>Keep proof of filing.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="guide-card" onclick="toggleCard(this)">
+          <h2>05 · Hearings</h2>
+          <div class="guide-body">
+            <p>At a hearing, do not chase every rabbit. Lead with the cleanest issue and strongest proof.</p>
+            <ul>
+              <li>Be brief.</li>
+              <li>Stay factual.</li>
+              <li>Ask clearly.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="guide-card" onclick="toggleCard(this)">
+          <h2>06 · Cross-Examination</h2>
+          <div class="guide-body">
+            <p>Ask controlled questions. One fact per question. Do not argue with the witness.</p>
+            <ul>
+              <li>Use short questions.</li>
+              <li>Use prior statements.</li>
+              <li>Stop when you get the point.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="guide-card" onclick="toggleCard(this)">
+          <h2>07 · Common Mistakes</h2>
+          <div class="guide-body">
+            <p>Most people lose ground because their proof is scattered, not because they have no proof.</p>
+            <ul>
+              <li>Do not submit messy packets.</li>
+              <li>Do not miss deadlines.</li>
+              <li>Do not rely on verbal promises.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="guide-card" onclick="toggleCard(this)">
+          <h2>08 · Emergency Checklist</h2>
+          <div class="guide-body">
+            <p>When pressure hits, simplify. Facts first. Timeline second. Relief third.</p>
+            <ul>
+              <li>What happened?</li>
+              <li>When did it happen?</li>
+              <li>Where is the proof?</li>
+              <li>What do you want the court to do?</li>
+            </ul>
+          </div>
+        </article>
+
+      </section>
     </section>
   </main>
 
@@ -72,12 +139,12 @@
       const loggedIn = localStorage.getItem("vindex_logged_in");
 
       if (loggedIn !== "true") {
-        window.location.href = "index.html?v=1200";
+        window.location.href = "index.html?v=1300";
       }
     });
 
     function goBack() {
-      window.location.href = "dashboard.html?v=1200";
+      window.location.href = "dashboard.html?v=1300";
     }
 
     function toggleCard(card) {
