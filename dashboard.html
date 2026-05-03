@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Vindex Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="vindex-screen dashboard-screen">
+    <div class="dark-overlay"></div>
+
+    <section class="form-panel active-panel">
+      <h2>Project Vindex</h2>
+      <p>Your record begins here.</p>
+
+      <button class="primary-btn" onclick="openSection('guide')">
+        Pro Se Guidebook
+      </button>
+
+      <button class="secondary-btn" onclick="openSection('evidence')">
+        Evidence Organizer
+      </button>
+
+      <button class="secondary-btn" onclick="openSection('timeline')">
+        Case Timeline
+      </button>
+
+      <button class="secondary-btn" onclick="openSection('export')">
+        Export Dossier
+      </button>
+
+      <button class="text-btn" onclick="logoutUser()">
+        Logout
+      </button>
+    </section>
+
+    <div id="messageBox" class="message-box"></div>
+  </main>
+
+  <script>
+    function openSection(section) {
+      const messageBox = document.getElementById("messageBox");
+      messageBox.textContent = section.toUpperCase() + " coming next.";
+      messageBox.classList.add("show");
+
+      setTimeout(() => {
+        messageBox.classList.remove("show");
+      }, 2000);
+    }
+
+    function logoutUser() {
+      localStorage.removeItem("vindex_logged_in");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
