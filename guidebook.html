@@ -6,7 +6,7 @@
 
   <title>Pro Se Guidebook</title>
 
-  <link rel="stylesheet" href="style.css?v=1300" />
+  <link rel="stylesheet" href="./style.css?v=2000" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 </head>
 
@@ -15,7 +15,6 @@
     <div class="guide-overlay"></div>
 
     <section class="guide-wrap">
-
       <button class="guide-back" onclick="goBack()">← Return to Vindex</button>
 
       <header class="guide-hero">
@@ -31,7 +30,6 @@
       </section>
 
       <section class="guide-grid">
-
         <article class="guide-card active" onclick="toggleCard(this)">
           <h2>01 · Before Court</h2>
           <div class="guide-body">
@@ -129,27 +127,12 @@
             </ul>
           </div>
         </article>
-
       </section>
     </section>
+
+    <div id="messageBox" class="message-box"></div>
   </main>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const loggedIn = localStorage.getItem("vindex_logged_in");
-
-      if (loggedIn !== "true") {
-        window.location.href = "index.html?v=1300";
-      }
-    });
-
-    function goBack() {
-      window.location.href = "dashboard.html?v=1300";
-    }
-
-    function toggleCard(card) {
-      card.classList.toggle("active");
-    }
-  </script>
+  <script src="./script.js?v=2000"></script>
 </body>
 </html>
