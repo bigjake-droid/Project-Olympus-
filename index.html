@@ -6,35 +6,282 @@
 
   <title>Project Vindex Technologies</title>
 
-  <link rel="stylesheet" href="./style.css?v=21000" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      min-height: 100%;
+      background: #000;
+      color: #e6edf3;
+      font-family: "Inter", Arial, sans-serif;
+    }
+
+    body {
+      overflow: hidden;
+    }
+
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background:
+        radial-gradient(circle at center, rgba(0, 38, 100, 0.5), transparent 40%),
+        #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .intro-logo {
+      width: 280px;
+      max-width: 80vw;
+      opacity: 0;
+      filter:
+        blur(20px)
+        drop-shadow(0 0 30px rgba(35, 90, 220, 0.9));
+      animation: smokeIn 3.4s ease forwards;
+    }
+
+    .intro-title {
+      margin-top: 24px;
+      padding: 0 20px;
+      font-family: "Cinzel", Georgia, serif;
+      font-size: clamp(22px, 6vw, 34px);
+      letter-spacing: 3px;
+      text-align: center;
+      text-transform: uppercase;
+      opacity: 0;
+      color: #eef5ff;
+      text-shadow:
+        0 0 12px rgba(80, 135, 255, 0.8),
+        0 0 40px rgba(0, 40, 160, 0.8);
+      animation: titleIn 2.5s ease forwards;
+      animation-delay: 0.8s;
+    }
+
+    .intro-tagline {
+      margin-top: 8px;
+      font-family: "Cinzel", Georgia, serif;
+      letter-spacing: 5px;
+      color: #8eb8ff;
+      opacity: 0;
+      animation: titleIn 2s ease forwards;
+      animation-delay: 1.3s;
+    }
+
+    .intro.hide {
+      animation: fadeIntro 1.2s ease forwards;
+    }
+
+    .app {
+      position: relative;
+      min-height: 100vh;
+      background: url("vindex-bg.png") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .app::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at center, rgba(0, 42, 120, 0.18), transparent 38%),
+        linear-gradient(to bottom, rgba(0,0,0,0.42), rgba(0,0,0,0.72));
+    }
+
+    .panel {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 400px;
+      padding: 24px;
+      border-radius: 20px;
+      border: 1px solid rgba(95, 135, 215, 0.4);
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+      box-shadow:
+        0 18px 42px rgba(0,0,0,0.8),
+        0 0 36px rgba(15,70,180,0.22);
+      text-align: center;
+      display: none;
+      animation: panelIn 0.7s ease forwards;
+    }
+
+    .panel.active {
+      display: block;
+    }
+
+    h1, h2 {
+      font-family: "Cinzel", Georgia, serif;
+      text-transform: uppercase;
+      color: #f1f6ff;
+      text-shadow:
+        0 0 12px rgba(80,130,255,0.55),
+        0 0 32px rgba(18,60,190,0.55);
+    }
+
+    h1 {
+      font-size: 30px;
+      letter-spacing: 4px;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 24px;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #b6c0cc;
+      margin-bottom: 18px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      margin: 8px 0;
+      border-radius: 12px;
+      border: 1px solid rgba(130,170,230,0.4);
+      background: rgba(0,0,0,0.75);
+      color: #e6edf3;
+      font-size: 15px;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 11px;
+      border-radius: 14px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .primary {
+      background: linear-gradient(135deg, #f4f7fa, #aeb6bd);
+      color: #050505;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    .secondary {
+      background: rgba(0,0,0,0.65);
+      color: #d9dee3;
+      border: 1px solid rgba(130,170,230,0.5);
+    }
+
+    .text {
+      background: none;
+      border: none;
+      color: #c6ced6;
+    }
+
+    .message {
+      position: fixed;
+      bottom: 20px;
+      left: 15px;
+      right: 15px;
+      display: none;
+      padding: 12px;
+      background: rgba(0,0,0,0.92);
+      border: 1px solid #999;
+      border-radius: 10px;
+      text-align: center;
+      color: #d9dee3;
+      z-index: 10000;
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    @keyframes smokeIn {
+      0% {
+        opacity: 0;
+        filter: blur(24px) brightness(0.7);
+        transform: scale(0.55);
+      }
+
+      55% {
+        opacity: 0.65;
+        filter: blur(10px) brightness(0.95);
+      }
+
+      100% {
+        opacity: 1;
+        filter:
+          blur(0)
+          brightness(1.1)
+          contrast(1.12)
+          drop-shadow(0 0 28px rgba(20,70,180,0.9))
+          drop-shadow(0 0 80px rgba(0,25,130,0.75));
+        transform: scale(1.1);
+      }
+    }
+
+    @keyframes titleIn {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIntro {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    @keyframes panelIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 
 <body>
   <div id="intro" class="intro">
-    <div class="smoke smoke-one"></div>
-    <div class="smoke smoke-two"></div>
-    <div class="smoke smoke-three"></div>
-
     <img src="vindex-logo.png" class="intro-logo" alt="Project Vindex Technologies Logo" />
-
     <h1 class="intro-title">Project Vindex Technologies</h1>
     <p class="intro-tagline">Vox Dei</p>
   </div>
 
-  <main class="vindex-screen">
-    <div class="parallax-bg"></div>
-    <div class="dark-overlay"></div>
+  <main class="app">
+    <section id="splashPanel" class="panel active">
+      <h1>Project Vindex</h1>
+      <p>Establish the record.</p>
 
-    <section id="splashPanel" class="entry-panel active-panel">
-      <h1 class="main-title">Project Vindex</h1>
-      <p class="main-sub">Establish the record.</p>
-
-      <button id="createBtn" class="primary-btn">Create Account</button>
-      <button id="loginBtn" class="secondary-btn">Login</button>
+      <button class="primary" onclick="showPanel('createPanel')">Create Account</button>
+      <button class="secondary" onclick="showPanel('loginPanel')">Login</button>
     </section>
 
-    <section id="createPanel" class="form-panel hidden-panel">
+    <section id="createPanel" class="panel">
       <h2>Create Account</h2>
       <p>Begin your record.</p>
 
@@ -43,24 +290,102 @@
       <input id="createPassword" type="password" placeholder="Create Password" />
       <input id="confirmPassword" type="password" placeholder="Confirm Password" />
 
-      <button id="submitCreateBtn" class="primary-btn">Enter Vindex</button>
-      <button id="backFromCreateBtn" class="text-btn">Back</button>
+      <button class="primary" onclick="createUser()">Enter Vindex</button>
+      <button class="text" onclick="showPanel('splashPanel')">Back</button>
     </section>
 
-    <section id="loginPanel" class="form-panel hidden-panel">
+    <section id="loginPanel" class="panel">
       <h2>Login</h2>
       <p>Return to your record.</p>
 
       <input id="loginEmail" type="email" placeholder="Email Address" />
       <input id="loginPassword" type="password" placeholder="Password" />
 
-      <button id="submitLoginBtn" class="primary-btn">Access Record</button>
-      <button id="backFromLoginBtn" class="text-btn">Back</button>
+      <button class="primary" onclick="loginUser()">Access Record</button>
+      <button class="text" onclick="showPanel('splashPanel')">Back</button>
     </section>
-
-    <div id="messageBox" class="message-box"></div>
   </main>
 
-  <script src="./script.js?v=21000"></script>
+  <div id="messageBox" class="message"></div>
+
+  <script>
+    window.addEventListener("load", function () {
+      const intro = document.getElementById("intro");
+
+      setTimeout(function () {
+        intro.classList.add("hide");
+      }, 4300);
+
+      setTimeout(function () {
+        intro.style.display = "none";
+      }, 5600);
+    });
+
+    function showPanel(id) {
+      document.getElementById("splashPanel").classList.remove("active");
+      document.getElementById("createPanel").classList.remove("active");
+      document.getElementById("loginPanel").classList.remove("active");
+
+      document.getElementById(id).classList.add("active");
+    }
+
+    function createUser() {
+      const fullName = document.getElementById("fullName").value.trim();
+      const email = document.getElementById("createEmail").value.trim().toLowerCase();
+      const password = document.getElementById("createPassword").value.trim();
+      const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+      if (!fullName || !email || !password || !confirmPassword) {
+        showMessage("Complete all fields.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        showMessage("Passwords do not match.");
+        return;
+      }
+
+      localStorage.setItem("vindex_user", JSON.stringify({
+        fullName: fullName,
+        email: email,
+        password: password
+      }));
+
+      localStorage.setItem("vindex_logged_in", "true");
+
+      window.location.href = "dashboard.html?v=22000";
+    }
+
+    function loginUser() {
+      const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+      const password = document.getElementById("loginPassword").value.trim();
+
+      const user = JSON.parse(localStorage.getItem("vindex_user"));
+
+      if (!email || !password) {
+        showMessage("Enter email and password.");
+        return;
+      }
+
+      if (!user || user.email !== email || user.password !== password) {
+        showMessage("No matching record found.");
+        return;
+      }
+
+      localStorage.setItem("vindex_logged_in", "true");
+
+      window.location.href = "dashboard.html?v=22000";
+    }
+
+    function showMessage(text) {
+      const box = document.getElementById("messageBox");
+      box.textContent = text;
+      box.classList.add("show");
+
+      setTimeout(function () {
+        box.classList.remove("show");
+      }, 1800);
+    }
+  </script>
 </body>
 </html>
