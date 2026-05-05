@@ -6,46 +6,82 @@
 
   <title>Vindex Evidence Organizer</title>
 
-  <link rel="stylesheet" href="./style.css?v=24000" />
+  <link rel="stylesheet" href="./style.css?v=25000" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
+    input,
     textarea {
+      -webkit-appearance: none;
+      appearance: none;
       width: 100%;
-      min-height: 110px;
       padding: 15px;
       margin: 8px 0;
       border-radius: 12px;
-      border: 1px solid rgba(130,170,230,0.4);
-      background: rgba(0,0,0,0.75);
+      border: 1px solid rgba(130,170,230,0.42);
+      background: rgba(0,0,0,0.78);
       color: #e6edf3;
       font-size: 15px;
-      resize: vertical;
       outline: none;
       font-family: "Inter", Arial, sans-serif;
     }
 
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(230,237,243,0.55);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+      line-height: 1.45;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: rgba(127,184,255,0.85);
+      box-shadow: 0 0 16px rgba(90,168,255,0.25);
+      background: rgba(0,0,0,0.88);
+    }
+
     .doctrine-box {
-      margin-top: 12px;
+      margin-top: 14px;
       display: grid;
-      gap: 8px;
+      gap: 9px;
     }
 
     .doctrine-option {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid rgba(127,184,255,0.25);
+      gap: 12px;
+      padding: 13px;
+      border-radius: 12px;
+      border: 1px solid rgba(127,184,255,0.28);
       background: rgba(255,255,255,0.035);
       color: #cbd6e2;
       font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .doctrine-option:hover {
+      border-color: #5aa8ff;
+      box-shadow: 0 0 12px rgba(90,168,255,0.35);
     }
 
     .doctrine-option input {
-      width: auto;
+      -webkit-appearance: auto;
+      appearance: auto;
+      width: 18px;
+      height: 18px;
       margin: 0;
+      accent-color: #5aa8ff;
+      flex: 0 0 auto;
+    }
+
+    .doctrine-option input:checked + span {
+      color: #7fc2ff;
+      font-weight: 700;
     }
 
     .evidence-link {
@@ -57,13 +93,30 @@
     .delete-small {
       width: 36px;
       height: 36px;
+      min-width: 36px;
       margin-left: auto;
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(0,0,0,0.48);
       color: #fff;
       font-size: 20px;
       padding: 0;
+      line-height: 1;
+    }
+
+    .evidence-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .evidence-count {
+      margin-bottom: 12px;
+      color: #9fb4d3;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: center;
     }
   </style>
 </head>
@@ -73,7 +126,7 @@
     <div class="guide-overlay"></div>
 
     <section class="guide-wrap">
-      <button class="guide-back" onclick="window.location.href='dashboard.html?v=24000'">
+      <button class="guide-back" onclick="window.location.href='dashboard.html?v=25000'">
         ← Return to Vindex
       </button>
 
@@ -81,6 +134,7 @@
         <p class="guide-kicker">VINDEX EVIDENCE COMMAND</p>
         <h1>Evidence Organizer</h1>
         <p class="guide-subtitle">Index the proof. Control the record.</p>
+        <p class="guide-line">Do not store the whole file here. Store the command record: title, date, source, link, and why it matters.</p>
       </header>
 
       <section class="guide-command">
@@ -94,20 +148,64 @@
         <input id="evLink" placeholder="Google Drive link or file URL" />
 
         <div class="doctrine-box">
-          <label class="doctrine-option"><input type="checkbox" value="D01 Pro Se Awareness"> D01 Pro Se Awareness</label>
-          <label class="doctrine-option"><input type="checkbox" value="D02 End State"> D02 End State</label>
-          <label class="doctrine-option"><input type="checkbox" value="D03 Records Acquisition"> D03 Records Acquisition</label>
-          <label class="doctrine-option"><input type="checkbox" value="D04 Record Over Memory"> D04 Record Over Memory</label>
-          <label class="doctrine-option"><input type="checkbox" value="D05 Motion Structure"> D05 Motion Structure</label>
-          <label class="doctrine-option"><input type="checkbox" value="D06 Evidence Handling"> D06 Evidence Handling</label>
-          <label class="doctrine-option"><input type="checkbox" value="D07 Evidence Integrity"> D07 Evidence Integrity</label>
-          <label class="doctrine-option"><input type="checkbox" value="D08 Evaluating Resolutions"> D08 Evaluating Resolutions</label>
-          <label class="doctrine-option"><input type="checkbox" value="D09 Deadline Management"> D09 Deadline Management</label>
-          <label class="doctrine-option"><input type="checkbox" value="D10 Professional Composure"> D10 Professional Composure</label>
+          <label class="doctrine-option">
+            <input type="checkbox" value="D01 Pro Se Awareness">
+            <span>D01 Pro Se Awareness</span>
+          </label>
+
+          <label class="doctrine-option">
+            <input type="checkbox" value="D02 End State">
+            <span>D02 End State</span>
+          </label>
+
+          <label class="doctrine-option">
+            <input type="checkbox" value="D03 Records Acquisition">
+            <span>D03 Records Acquisition</span>
+          </label>
+
+          <label class="doctrine-option">
+            <input type="checkbox" value="D04 Record Over Memory">
+            <span>D04 Record Over Memory</span>
+          </label>
+
+          <label class="doctrine-option">
+            <input type="checkbox" value="D05 Motion Structure">
+            <span>D05 Motion Structure</span>
+          </label>
+
+          <label class="doctrine-option">
+            <input type="checkbox" value="D06 Evidence Handling">
+            <span>D06 Evidence Handling</span>
+          </label>
+
+          <label class="doctrine-option">
+            <input type="checkbox" value="D07 Evidence Integrity">
+            <span>D07 Evidence Integrity</span>
+          </label>
+
+          <label class="doctrine-option">
+            <input type="checkbox" value="D08 Evaluating Resolutions">
+            <span>D08 Evaluating Resolutions</span>
+          </label>
+
+          <label class="doctrine-option">
+            <input type="checkbox" value="D09 Deadline Management">
+            <span>D09 Deadline Management</span>
+          </label>
+
+          <label class="doctrine-option">
+            <input type="checkbox" value="D10 Professional Composure">
+            <span>D10 Professional Composure</span>
+          </label>
         </div>
 
-        <button class="primary-btn" onclick="addEvidence()">Add Evidence</button>
+        <div class="evidence-actions">
+          <button class="primary-btn" onclick="addEvidence()">Add Evidence</button>
+          <button class="secondary-btn" onclick="clearForm()">Clear Form</button>
+        </div>
       </section>
+
+      <div id="evidenceCount" class="evidence-count"></div>
 
       <section id="evidenceList" class="guide-grid"></section>
     </section>
@@ -120,7 +218,7 @@
       const loggedIn = localStorage.getItem("vindex_logged_in");
 
       if (loggedIn !== "true") {
-        window.location.href = "index.html?v=24000";
+        window.location.href = "index.html?v=25000";
         return;
       }
 
@@ -152,13 +250,13 @@
 
       evidence.push({
         id: Date.now(),
-        title,
-        date,
-        type,
-        source,
-        summary,
-        link,
-        doctrine,
+        title: title,
+        date: date,
+        type: type,
+        source: source,
+        summary: summary,
+        link: link,
+        doctrine: doctrine,
         createdAt: new Date().toISOString()
       });
 
@@ -171,7 +269,10 @@
 
     function renderEvidence() {
       const container = document.getElementById("evidenceList");
+      const countBox = document.getElementById("evidenceCount");
       const evidence = JSON.parse(localStorage.getItem("vindex_evidence")) || [];
+
+      countBox.textContent = evidence.length + " evidence record" + (evidence.length === 1 ? "" : "s") + " logged";
 
       if (!evidence.length) {
         container.innerHTML = `
@@ -196,7 +297,9 @@
       });
 
       container.innerHTML = sorted.map(function (item) {
-        const doctrines = item.doctrine && item.doctrine.length ? item.doctrine.join(", ") : "No doctrine tagged";
+        const doctrines = item.doctrine && item.doctrine.length
+          ? item.doctrine.join(", ")
+          : "No doctrine tagged";
 
         const linkHtml = item.link
           ? `<a class="evidence-link" href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer">Open Evidence</a>`
@@ -206,10 +309,12 @@
           <article class="guide-card active">
             <div class="guide-header">
               <div class="guide-badge">${escapeHtml(item.type.substring(0, 2).toUpperCase())}</div>
+
               <div>
                 <h2>${escapeHtml(item.title)}</h2>
                 <small>${escapeHtml(item.date)} · ${escapeHtml(item.source)}</small>
               </div>
+
               <button class="delete-small" onclick="deleteEvidence(${item.id})">×</button>
             </div>
 
@@ -226,6 +331,7 @@
 
     function deleteEvidence(id) {
       const evidence = JSON.parse(localStorage.getItem("vindex_evidence")) || [];
+
       const updated = evidence.filter(function (item) {
         return item.id !== id;
       });
@@ -250,6 +356,7 @@
 
     function showMessage(text) {
       const box = document.getElementById("messageBox");
+
       box.textContent = text;
       box.classList.add("show");
 
