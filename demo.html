@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Project Vindex Demo</title>
+
+  <link rel="stylesheet" href="./style.css?v=41000" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <main class="dash-page">
+    <div class="dash-overlay"></div>
+
+    <section class="dash-hero">
+      <div class="pv-mark">⚔</div>
+      <h1>Project Vindex Demo</h1>
+      <p class="latin">Simulated Case Environment</p>
+    </section>
+
+    <section class="dash-actions">
+      <button class="dash-card" onclick="goDemoEvidence()">
+        <div class="card-icon">🔒</div>
+        <span>Evidence<br />Organizer</span>
+        <small>View fake sample evidence.</small>
+        <b>→</b>
+      </button>
+
+      <button class="dash-card" onclick="resetDemo()">
+        <div class="card-icon">♻️</div>
+        <span>Reset<br />Demo</span>
+        <small>Reload the sample case.</small>
+        <b>→</b>
+      </button>
+    </section>
+
+    <footer class="dash-footer">
+      <button onclick="window.location.href='index.html?v=41000'">Main App</button>
+      <p>Demo Mode — No real case data used</p>
+      <button onclick="goDemoEvidence()">Open</button>
+    </footer>
+  </main>
+
+  <script>
+    const DEMO_KEY = "vindex_demo_evidence";
+
+    function loadDemoData(forceReset = false) {
+      if (!forceReset && localStorage.getItem(DEMO_KEY)) return;
+
+      const demoEvidence = [
+        {
+          id: 1001,
+          title: "Discovery Packet – Demo",
+          date: "2025-10-21",
+          type: "Discovery",
+          source: "DA",
+          summary: "Establishes the official narrative and evidentiary foundation. Used as the baseline for identifying contradictions, omissions, and inconsistencies across reports, bodycam, and external records.",
+          link: "",
+          doctrine: ["D03 Records Acquisition", "D04 Record Over Memory", "D06 Evidence Handling"],
+          createdAt: new Date().toISOString()
+        },
+        {
+          id: 1002,
+          title: "Officer Report – Timeline Claim",
+          date: "2025-08-20",
+          type: "Police Report",
+          source: "Police",
+          summary: "Documents the agency timeline claim. This entry is used to compare the official version against bodycam, dispatch logs, and independent timestamped records.",
+          link: "",
+          doctrine: ["D04 Record Over Memory", "D06 Evidence Handling"],
+          createdAt: new Date().toISOString()
+        },
+        {
+          id: 1003,
+          title: "DA Email – Resolution Position",
+          date: "2025-10-26",
+          type: "Email",
+          source: "DA",
+          summary: "Shows the prosecution’s stated position and offer posture. Used to evaluate how the State frames the dispute and whether later statements remain consistent.",
+          link: "",
+          doctrine: ["D05 Motion Structure", "D08 Evaluating Resolutions", "D10 Professional Composure"],
+          createdAt: new Date().toISOString()
+        },
+        {
+          id: 1004,
+          title: "Dispatch Log – Initial Call",
+          date: "2025-08-20",
+          type: "Dispatch",
+          source: "911 / CAD",
+          summary: "Provides the call origin, timestamps, and agency response sequence. Used to test whether the report narrative matches the real-time dispatch record.",
+          link: "",
+          doctrine: ["D03 Records Acquisition", "D04 Record Over Memory", "D09 Deadline Management"],
+          createdAt: new Date().toISOString()
+        }
+      ];
+
+      localStorage.setItem(DEMO_KEY, JSON.stringify(demoEvidence));
+    }
+
+    function goDemoEvidence() {
+      loadDemoData(false);
+      localStorage.setItem("vindex_mode", "demo");
+      localStorage.setItem("vindex_logged_in", "true");
+      window.location.href = "evidence.html?v=41000";
+    }
+
+    function resetDemo() {
+      loadDemoData(true);
+      alert("Demo reset.");
+    }
+
+    loadDemoData(false);
+  </script>
+</body>
+</html>
