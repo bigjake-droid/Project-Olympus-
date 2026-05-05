@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vindex Evidence</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link rel="stylesheet" href="style.css?v=20000">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Vindex Evidence Organizer</title>
+
+  <link rel="stylesheet" href="./style.css?v=20000" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 </head>
 
-<body class="dash-page">
+<body>
+  <main class="guide-page">
+    <div class="guide-overlay"></div>
 
-<div class="dash-overlay"></div>
+    <section class="guide-wrap">
+      <button class="guide-back" onclick="goBack()">← Return to Vindex</button>
 
-<main class="guide-wrap">
+      <header class="guide-hero">
+        <p class="guide-kicker">VINDEX EVIDENCE COMMAND</p>
+        <h1>Evidence Organizer</h1>
+        <p class="guide-subtitle">Index the proof. Control the record.</p>
+      </header>
 
-<button class="guide-back" onclick="goBack()">← Return</button>
+      <section class="guide-command">
+        <span>Add Evidence</span>
 
-<h1 class="main-title">Evidence Command</h1>
+        <input id="evTitle" placeholder="Evidence Title" />
+        <input id="evDate" type="date" />
+        <input id="evType" placeholder="Type: Email, Report, Video, Audio, Photo" />
+        <input id="evSource" placeholder="Source: DA, Police, Personal, Witness" />
 
-<!-- ADD FORM -->
-<div class="form-panel">
+        <textarea id="evSummary" placeholder="What does this evidence prove?"></textarea>
 
-<input id="evTitle" placeholder="Evidence Title">
-<input id="evDate" type="date">
-<input id="evType" placeholder="Type (Email, Report, Video)">
-<input id="evSource" placeholder="Source (PD, DA, Personal)">
+        <input id="evLink" placeholder="Google Drive link or file URL" />
 
-<textarea id="evSummary" placeholder="What does this prove?"></textarea>
+        <select id="evDoctrine" multiple>
+          <option value="D01 Pro Se Awareness">D01 Pro Se Awareness</option>
+          <option value="D02 End State">D02 End State</option>
+          <option value="D03 Records Acquisition">D03 Records Acquisition</option>
+          <option value="D04 Record Over Memory">D04 Record Over Memory</option>
+          <option value="D05 Motion Structure">D05 Motion Structure</option>
+          <option value="D06 Evidence Handling">D06 Evidence Handling</option>
+          <option value="D07 Evidence Integrity">D07 Evidence Integrity</option>
+          <option value="D08 Evaluating Resolutions">D08 Evaluating Resolutions</option>
+          <option value="D09 Deadline Management">D09 Deadline Management</option>
+          <option value="D10 Professional Composure">D10 Professional Composure</option>
+        </select>
 
-<input id="evLink" placeholder="Google Drive Link">
+        <button class="primary-btn" onclick="addEvidence()">Add Evidence</button>
+      </section>
 
-<select id="evDoctrine" multiple>
-<option value="D01">D01 Pro Se Awareness</option>
-<option value="D02">D02 End State</option>
-<option value="D03">D03 Records</option>
-<option value="D04">D04 Record vs Narrative</option>
-<option value="D05">D05 Motions</option>
-<option value="D06">D06 Evidence</option>
-<option value="D07">D07 Integrity</option>
-<option value="D08">D08 Resolution</option>
-<option value="D09">D09 Deadlines</option>
-<option value="D10">D10 Composure</option>
-</select>
+      <section id="evidenceList" class="guide-grid"></section>
+    </section>
 
-<button class="primary-btn" onclick="addEvidence()">Add Evidence</button>
+    <div id="messageBox" class="message-box"></div>
+  </main>
 
-</div>
-
-<!-- LIST -->
-<div id="evidenceList"></div>
-
-</main>
-
-<script src="script.js?v=20000"></script>
-
+  <script src="./script.js?v=20000"></script>
 </body>
 </html>
