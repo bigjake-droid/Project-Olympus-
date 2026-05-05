@@ -6,7 +6,7 @@
 
   <title>Vindex Evidence Organizer</title>
 
-  <link rel="stylesheet" href="./style.css?v=25000" />
+  <link rel="stylesheet" href="./style.css?v=30000" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
@@ -90,18 +90,30 @@
       text-decoration: none;
     }
 
-    .delete-small {
+    .card-actions {
+      display: flex;
+      gap: 7px;
+      margin-left: auto;
+      align-items: center;
+    }
+
+    .delete-small,
+    .edit-small {
       width: 36px;
       height: 36px;
       min-width: 36px;
-      margin-left: auto;
+      margin: 0;
       border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.22);
       background: rgba(0,0,0,0.48);
       color: #fff;
-      font-size: 20px;
+      font-size: 18px;
       padding: 0;
       line-height: 1;
+    }
+
+    .edit-small {
+      color: #7fc2ff;
     }
 
     .evidence-actions {
@@ -118,6 +130,25 @@
       text-transform: uppercase;
       text-align: center;
     }
+
+    .editing-banner {
+      display: none;
+      margin-bottom: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(127,184,255,0.45);
+      background: rgba(40,100,180,0.12);
+      color: #b9dcff;
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .editing-banner.show {
+      display: block;
+    }
   </style>
 </head>
 
@@ -126,7 +157,7 @@
     <div class="guide-overlay"></div>
 
     <section class="guide-wrap">
-      <button class="guide-back" onclick="window.location.href='dashboard.html?v=25000'">
+      <button class="guide-back" onclick="window.location.href='dashboard.html?v=30000'">
         ← Return to Vindex
       </button>
 
@@ -134,11 +165,17 @@
         <p class="guide-kicker">VINDEX EVIDENCE COMMAND</p>
         <h1>Evidence Organizer</h1>
         <p class="guide-subtitle">Index the proof. Control the record.</p>
-        <p class="guide-line">Do not store the whole file here. Store the command record: title, date, source, link, and why it matters.</p>
+        <p class="guide-line">
+          Store the command record: title, date, source, link, doctrine, and what it proves.
+        </p>
       </header>
 
       <section class="guide-command">
         <span>Add Evidence</span>
+
+        <div id="editingBanner" class="editing-banner">
+          Editing mode active
+        </div>
 
         <input id="evTitle" placeholder="Evidence Title" />
         <input id="evDate" type="date" />
@@ -200,7 +237,7 @@
         </div>
 
         <div class="evidence-actions">
-          <button class="primary-btn" onclick="addEvidence()">Add Evidence</button>
+          <button id="saveEvidenceBtn" class="primary-btn" onclick="saveEvidence()">Add Evidence</button>
           <button class="secondary-btn" onclick="clearForm()">Clear Form</button>
         </div>
       </section>
@@ -214,11 +251,13 @@
   </main>
 
   <script>
+    let editingId = null;
+
     document.addEventListener("DOMContentLoaded", function () {
       const loggedIn = localStorage.getItem("vindex_logged_in");
 
       if (loggedIn !== "true") {
-        window.location.href = "index.html?v=25000";
+        window.location.href = "index.html?v=30000";
         return;
       }
 
@@ -232,7 +271,7 @@
         });
     }
 
-    function addEvidence() {
+    function saveEvidence() {
       const title = document.getElementById("evTitle").value.trim();
       const date = document.getElementById("evDate").value;
       const type = document.getElementById("evType").value.trim();
@@ -247,6 +286,34 @@
       }
 
       const evidence = JSON.parse(localStorage.getItem("vindex_evidence")) || [];
+
+      if (editingId !== null) {
+        const index = evidence.findIndex(function (item) {
+          return item.id === editingId;
+        });
+
+        if (index !== -1) {
+          evidence[index] = {
+            ...evidence[index],
+            title: title,
+            date: date,
+            type: type,
+            source: source,
+            summary: summary,
+            link: link,
+            doctrine: doctrine,
+            updatedAt: new Date().toISOString()
+          };
+        }
+
+        editingId = null;
+        localStorage.setItem("vindex_evidence", JSON.stringify(evidence));
+
+        clearForm();
+        renderEvidence();
+        showMessage("Evidence updated.");
+        return;
+      }
 
       evidence.push({
         id: Date.now(),
@@ -315,7 +382,10 @@
                 <small>${escapeHtml(item.date)} · ${escapeHtml(item.source)}</small>
               </div>
 
-              <button class="delete-small" onclick="deleteEvidence(${item.id})">×</button>
+              <div class="card-actions">
+                <button class="edit-small" onclick="editEvidence(${item.id})">✎</button>
+                <button class="delete-small" onclick="deleteEvidence(${item.id})">×</button>
+              </div>
             </div>
 
             <div class="guide-body">
@@ -329,6 +399,42 @@
       }).join("");
     }
 
+    function editEvidence(id) {
+      const evidence = JSON.parse(localStorage.getItem("vindex_evidence")) || [];
+
+      const item = evidence.find(function (entry) {
+        return entry.id === id;
+      });
+
+      if (!item) {
+        showMessage("Evidence not found.");
+        return;
+      }
+
+      editingId = id;
+
+      document.getElementById("evTitle").value = item.title || "";
+      document.getElementById("evDate").value = item.date || "";
+      document.getElementById("evType").value = item.type || "";
+      document.getElementById("evSource").value = item.source || "";
+      document.getElementById("evSummary").value = item.summary || "";
+      document.getElementById("evLink").value = item.link || "";
+
+      document.querySelectorAll(".doctrine-option input").forEach(function (box) {
+        box.checked = item.doctrine && item.doctrine.includes(box.value);
+      });
+
+      document.getElementById("saveEvidenceBtn").textContent = "Update Evidence";
+      document.getElementById("editingBanner").classList.add("show");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+      showMessage("Editing mode activated.");
+    }
+
     function deleteEvidence(id) {
       const evidence = JSON.parse(localStorage.getItem("vindex_evidence")) || [];
 
@@ -337,11 +443,19 @@
       });
 
       localStorage.setItem("vindex_evidence", JSON.stringify(updated));
+
+      if (editingId === id) {
+        editingId = null;
+        clearForm();
+      }
+
       renderEvidence();
       showMessage("Evidence removed.");
     }
 
     function clearForm() {
+      editingId = null;
+
       document.getElementById("evTitle").value = "";
       document.getElementById("evDate").value = "";
       document.getElementById("evType").value = "";
@@ -352,6 +466,9 @@
       document.querySelectorAll(".doctrine-option input").forEach(function (box) {
         box.checked = false;
       });
+
+      document.getElementById("saveEvidenceBtn").textContent = "Add Evidence";
+      document.getElementById("editingBanner").classList.remove("show");
     }
 
     function showMessage(text) {
