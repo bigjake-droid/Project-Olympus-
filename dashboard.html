@@ -6,7 +6,7 @@
 
   <title>Project Vindex Dashboard</title>
 
-  <link rel="stylesheet" href="./style.css?v=20000" />
+  <link rel="stylesheet" href="./style.css?v=23000" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 </head>
 
@@ -21,28 +21,28 @@
     </section>
 
     <section class="dash-actions">
-      <button class="dash-card" onclick="window.location.href='guidebook.html?v=20000'">
+      <button class="dash-card" onclick="window.location.href='guidebook.html?v=23000'">
         <div class="card-icon">📖</div>
         <span>Pro Se<br />Guidebook</span>
         <small>Doctrine. Discipline. Record control.</small>
         <b>→</b>
       </button>
 
-      <button class="dash-card" onclick="window.location.href='evidence.html?v=20000'">
+      <button class="dash-card" onclick="window.location.href='evidence.html?v=23000'">
         <div class="card-icon">🔒</div>
         <span>Evidence<br />Organizer</span>
         <small>Index proof. Tag doctrine. Build leverage.</small>
         <b>→</b>
       </button>
 
-      <button class="dash-card" onclick="openSection('Case Timeline')">
+      <button class="dash-card" onclick="alert('Case Timeline coming next.')">
         <div class="card-icon">⏳</div>
         <span>Case<br />Timeline</span>
         <small>Every event matters.</small>
         <b>→</b>
       </button>
 
-      <button class="dash-card" onclick="openSection('Export Dossier')">
+      <button class="dash-card" onclick="alert('Export Dossier coming next.')">
         <div class="card-icon">📜</div>
         <span>Export<br />Dossier</span>
         <small>Build. Export. Defend.</small>
@@ -51,14 +51,17 @@
     </section>
 
     <footer class="dash-footer">
-      <button onclick="openSection('User')">User</button>
+      <button onclick="alert('User coming next.')">User</button>
       <p>Leave a record that cannot be ignored.</p>
       <button onclick="logoutUser()">Logout</button>
     </footer>
-
-    <div id="messageBox" class="message-box"></div>
   </main>
 
-  <script src="./script.js?v=20000"></script>
+  <script>
+    function logoutUser() {
+      localStorage.setItem("vindex_logged_in", "false");
+      window.location.href = "index.html?v=23000";
+    }
+  </script>
 </body>
 </html>
