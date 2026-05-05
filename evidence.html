@@ -6,7 +6,7 @@
 
   <title>Vindex Evidence Organizer</title>
 
-  <link rel="stylesheet" href="./style.css?v=20000" />
+  <link rel="stylesheet" href="./style.css?v=23000" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 </head>
 
@@ -15,7 +15,9 @@
     <div class="guide-overlay"></div>
 
     <section class="guide-wrap">
-      <button class="guide-back" onclick="goBack()">← Return to Vindex</button>
+      <button class="guide-back" onclick="window.location.href='dashboard.html?v=23000'">
+        ← Return to Vindex
+      </button>
 
       <header class="guide-hero">
         <p class="guide-kicker">VINDEX EVIDENCE COMMAND</p>
@@ -30,9 +32,7 @@
         <input id="evDate" type="date" />
         <input id="evType" placeholder="Type: Email, Report, Video, Audio, Photo" />
         <input id="evSource" placeholder="Source: DA, Police, Personal, Witness" />
-
         <textarea id="evSummary" placeholder="What does this evidence prove?"></textarea>
-
         <input id="evLink" placeholder="Google Drive link or file URL" />
 
         <select id="evDoctrine" multiple>
@@ -57,6 +57,152 @@
     <div id="messageBox" class="message-box"></div>
   </main>
 
-  <script src="./script.js?v=20000"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const loggedIn = localStorage.getItem("vindex_logged_in");
+
+      if (loggedIn !== "true") {
+        window.location.href = "index.html?v=23000";
+        return;
+      }
+
+      renderEvidence();
+    });
+
+    function addEvidence() {
+      const title = document.getElementById("evTitle").value.trim();
+      const date = document.getElementById("evDate").value;
+      const type = document.getElementById("evType").value.trim();
+      const source = document.getElementById("evSource").value.trim();
+      const summary = document.getElementById("evSummary").value.trim();
+      const link = document.getElementById("evLink").value.trim();
+
+      const doctrine = Array.from(document.getElementById("evDoctrine").selectedOptions).map(function (option) {
+        return option.value;
+      });
+
+      if (!title || !date || !type || !source || !summary) {
+        showMessage("Complete title, date, type, source, and summary.");
+        return;
+      }
+
+      const evidence = JSON.parse(localStorage.getItem("vindex_evidence")) || [];
+
+      evidence.push({
+        id: Date.now(),
+        title,
+        date,
+        type,
+        source,
+        summary,
+        link,
+        doctrine,
+        createdAt: new Date().toISOString()
+      });
+
+      localStorage.setItem("vindex_evidence", JSON.stringify(evidence));
+
+      clearForm();
+      renderEvidence();
+      showMessage("Evidence added.");
+    }
+
+    function renderEvidence() {
+      const container = document.getElementById("evidenceList");
+      const evidence = JSON.parse(localStorage.getItem("vindex_evidence")) || [];
+
+      if (!evidence.length) {
+        container.innerHTML = `
+          <article class="guide-card active">
+            <div class="guide-header">
+              <div class="guide-badge">0</div>
+              <div>
+                <h2>No Evidence Logged</h2>
+                <small>START THE RECORD</small>
+              </div>
+            </div>
+            <div class="guide-body">
+              <div class="guide-line-item">Add your first evidence entry above.</div>
+            </div>
+          </article>
+        `;
+        return;
+      }
+
+      const sorted = evidence.slice().sort(function (a, b) {
+        return new Date(b.date) - new Date(a.date);
+      });
+
+      container.innerHTML = sorted.map(function (item) {
+        const doctrines = item.doctrine.length ? item.doctrine.join(", ") : "No doctrine tagged";
+        const link = item.link
+          ? `<a href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer">Open Evidence</a>`
+          : `No link added`;
+
+        return `
+          <article class="guide-card active">
+            <div class="guide-header">
+              <div class="guide-badge">${escapeHtml(item.type.substring(0, 2).toUpperCase())}</div>
+              <div>
+                <h2>${escapeHtml(item.title)}</h2>
+                <small>${escapeHtml(item.date)} · ${escapeHtml(item.source)}</small>
+              </div>
+              <button class="text-btn" onclick="deleteEvidence(${item.id})">×</button>
+            </div>
+
+            <div class="guide-body">
+              <div class="guide-line-item"><strong>Type:</strong> ${escapeHtml(item.type)}</div>
+              <div class="guide-line-item"><strong>Summary:</strong> ${escapeHtml(item.summary)}</div>
+              <div class="guide-line-item"><strong>Doctrine:</strong> ${escapeHtml(doctrines)}</div>
+              <div class="guide-line-item">${link}</div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function deleteEvidence(id) {
+      const evidence = JSON.parse(localStorage.getItem("vindex_evidence")) || [];
+      const updated = evidence.filter(function (item) {
+        return item.id !== id;
+      });
+
+      localStorage.setItem("vindex_evidence", JSON.stringify(updated));
+      renderEvidence();
+      showMessage("Evidence removed.");
+    }
+
+    function clearForm() {
+      document.getElementById("evTitle").value = "";
+      document.getElementById("evDate").value = "";
+      document.getElementById("evType").value = "";
+      document.getElementById("evSource").value = "";
+      document.getElementById("evSummary").value = "";
+      document.getElementById("evLink").value = "";
+
+      Array.from(document.getElementById("evDoctrine").options).forEach(function (option) {
+        option.selected = false;
+      });
+    }
+
+    function showMessage(text) {
+      const box = document.getElementById("messageBox");
+      box.textContent = text;
+      box.classList.add("show");
+
+      setTimeout(function () {
+        box.classList.remove("show");
+      }, 1800);
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+  </script>
 </body>
 </html>
