@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vindex Evidence</title>
+
+<link rel="stylesheet" href="style.css?v=20000">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body class="dash-page">
+
+<div class="dash-overlay"></div>
+
+<main class="guide-wrap">
+
+<button class="guide-back" onclick="goBack()">← Return</button>
+
+<h1 class="main-title">Evidence Command</h1>
+
+<!-- ADD FORM -->
+<div class="form-panel">
+
+<input id="evTitle" placeholder="Evidence Title">
+<input id="evDate" type="date">
+<input id="evType" placeholder="Type (Email, Report, Video)">
+<input id="evSource" placeholder="Source (PD, DA, Personal)">
+
+<textarea id="evSummary" placeholder="What does this prove?"></textarea>
+
+<input id="evLink" placeholder="Google Drive Link">
+
+<select id="evDoctrine" multiple>
+<option value="D01">D01 Pro Se Awareness</option>
+<option value="D02">D02 End State</option>
+<option value="D03">D03 Records</option>
+<option value="D04">D04 Record vs Narrative</option>
+<option value="D05">D05 Motions</option>
+<option value="D06">D06 Evidence</option>
+<option value="D07">D07 Integrity</option>
+<option value="D08">D08 Resolution</option>
+<option value="D09">D09 Deadlines</option>
+<option value="D10">D10 Composure</option>
+</select>
+
+<button class="primary-btn" onclick="addEvidence()">Add Evidence</button>
+
+</div>
+
+<!-- LIST -->
+<div id="evidenceList"></div>
+
+</main>
+
+<script src="script.js?v=20000"></script>
+
+</body>
+</html>
