@@ -6,7 +6,7 @@
 
   <title>Vindex Evidence Organizer</title>
 
-  <link rel="stylesheet" href="./style.css?v=30000" />
+  <link rel="stylesheet" href="./style.css?v=41000" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
@@ -42,6 +42,20 @@
       border-color: rgba(127,184,255,0.85);
       box-shadow: 0 0 16px rgba(90,168,255,0.25);
       background: rgba(0,0,0,0.88);
+    }
+
+    .mode-banner {
+      margin-bottom: 14px;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(127,184,255,0.38);
+      background: rgba(20,70,160,0.16);
+      color: #b9dcff;
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 12px;
     }
 
     .doctrine-box {
@@ -157,9 +171,11 @@
     <div class="guide-overlay"></div>
 
     <section class="guide-wrap">
-      <button class="guide-back" onclick="window.location.href='dashboard.html?v=30000'">
+      <button class="guide-back" onclick="returnToDashboard()">
         ← Return to Vindex
       </button>
+
+      <div id="modeBanner" class="mode-banner"></div>
 
       <header class="guide-hero">
         <p class="guide-kicker">VINDEX EVIDENCE COMMAND</p>
@@ -253,16 +269,40 @@
   <script>
     let editingId = null;
 
+    function isDemoMode() {
+      return localStorage.getItem("vindex_mode") === "demo";
+    }
+
+    function getStorageKey() {
+      return isDemoMode() ? "vindex_demo_evidence" : "vindex_evidence";
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
       const loggedIn = localStorage.getItem("vindex_logged_in");
 
       if (loggedIn !== "true") {
-        window.location.href = "index.html?v=30000";
+        window.location.href = "index.html?v=41000";
         return;
+      }
+
+      const modeBanner = document.getElementById("modeBanner");
+
+      if (isDemoMode()) {
+        modeBanner.textContent = "Demo Mode — sample evidence only";
+      } else {
+        modeBanner.textContent = "Private Case Mode — local evidence index";
       }
 
       renderEvidence();
     });
+
+    function returnToDashboard() {
+      if (isDemoMode()) {
+        window.location.href = "demo.html?v=41000";
+      } else {
+        window.location.href = "dashboard.html?v=41000";
+      }
+    }
 
     function getSelectedDoctrines() {
       return Array.from(document.querySelectorAll(".doctrine-option input:checked"))
@@ -285,7 +325,8 @@
         return;
       }
 
-      const evidence = JSON.parse(localStorage.getItem("vindex_evidence")) || [];
+      const storageKey = getStorageKey();
+      const evidence = JSON.parse(localStorage.getItem(storageKey)) || [];
 
       if (editingId !== null) {
         const index = evidence.findIndex(function (item) {
@@ -307,7 +348,7 @@
         }
 
         editingId = null;
-        localStorage.setItem("vindex_evidence", JSON.stringify(evidence));
+        localStorage.setItem(storageKey, JSON.stringify(evidence));
 
         clearForm();
         renderEvidence();
@@ -327,7 +368,7 @@
         createdAt: new Date().toISOString()
       });
 
-      localStorage.setItem("vindex_evidence", JSON.stringify(evidence));
+      localStorage.setItem(storageKey, JSON.stringify(evidence));
 
       clearForm();
       renderEvidence();
@@ -337,7 +378,8 @@
     function renderEvidence() {
       const container = document.getElementById("evidenceList");
       const countBox = document.getElementById("evidenceCount");
-      const evidence = JSON.parse(localStorage.getItem("vindex_evidence")) || [];
+      const storageKey = getStorageKey();
+      const evidence = JSON.parse(localStorage.getItem(storageKey)) || [];
 
       countBox.textContent = evidence.length + " evidence record" + (evidence.length === 1 ? "" : "s") + " logged";
 
@@ -400,7 +442,8 @@
     }
 
     function editEvidence(id) {
-      const evidence = JSON.parse(localStorage.getItem("vindex_evidence")) || [];
+      const storageKey = getStorageKey();
+      const evidence = JSON.parse(localStorage.getItem(storageKey)) || [];
 
       const item = evidence.find(function (entry) {
         return entry.id === id;
@@ -436,13 +479,14 @@
     }
 
     function deleteEvidence(id) {
-      const evidence = JSON.parse(localStorage.getItem("vindex_evidence")) || [];
+      const storageKey = getStorageKey();
+      const evidence = JSON.parse(localStorage.getItem(storageKey)) || [];
 
       const updated = evidence.filter(function (item) {
         return item.id !== id;
       });
 
-      localStorage.setItem("vindex_evidence", JSON.stringify(updated));
+      localStorage.setItem(storageKey, JSON.stringify(updated));
 
       if (editingId === id) {
         editingId = null;
