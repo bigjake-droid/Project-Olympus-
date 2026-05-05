@@ -887,3 +887,58 @@ input:focus {
     transform: scale(1) translateY(0);
   }
 }
+/* FORCE CLEAN INPUT STYLING (MOBILE FIX) */
+
+input,
+textarea,
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0;
+  border-radius: 12px;
+  border: 1px solid rgba(130,170,230,0.4);
+  background: rgba(0,0,0,0.75);
+  color: #e6edf3;
+  font-size: 15px;
+  outline: none;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+/* TEXTAREA FIX (this is your gray box issue) */
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+/* KILL WHITE BACKGROUND ON MOBILE */
+textarea:focus,
+input:focus,
+select:focus {
+  background: rgba(0,0,0,0.85);
+}
+
+/* CHECKBOX SYSTEM CLEANUP */
+.doctrine-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(127,184,255,0.25);
+  background: rgba(255,255,255,0.03);
+  color: #cbd6e2;
+  font-size: 14px;
+}
+
+.doctrine-option input {
+  width: 18px;
+  height: 18px;
+  accent-color: #5aa8ff;
+}
+
+/* BUTTON FIX */
+.primary-btn {
+  margin-top: 14px;
+}
