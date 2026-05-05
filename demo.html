@@ -6,41 +6,235 @@
 
   <title>Project Vindex Demo</title>
 
-  <link rel="stylesheet" href="./style.css?v=41000" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      min-height: 100%;
+      background: #000;
+      color: #e6edf3;
+      font-family: "Inter", Arial, sans-serif;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .demo-page {
+      position: relative;
+      min-height: 100vh;
+      background: url("vindex-dashboard.png") center/cover no-repeat;
+      padding: 38px 18px 36px;
+    }
+
+    .demo-page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(65,120,255,0.22), transparent 32%),
+        linear-gradient(to bottom, rgba(0,0,0,0.68), rgba(0,0,0,0.94));
+      backdrop-filter: blur(2px);
+      z-index: 1;
+    }
+
+    .demo-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .mark {
+      font-size: 30px;
+      margin-bottom: 12px;
+      color: #dbe8ff;
+      text-shadow: 0 0 18px rgba(90,168,255,0.6);
+    }
+
+    h1 {
+      font-family: "Cinzel", Georgia, serif;
+      font-size: clamp(32px, 8vw, 52px);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #f0f6ff;
+      line-height: 1.05;
+      text-shadow:
+        0 0 14px rgba(90,168,255,0.42),
+        0 0 38px rgba(0,0,0,0.95);
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      font-size: 15px;
+      letter-spacing: 2px;
+      color: #9fb4d3;
+      text-transform: uppercase;
+    }
+
+    .demo-banner {
+      margin: 22px 0;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(127,184,255,0.42);
+      background: rgba(20,70,160,0.16);
+      color: #b9dcff;
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 0 20px rgba(90,168,255,0.14);
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .demo-card {
+      width: 100%;
+      min-height: 168px;
+      padding: 22px 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(127,184,255,0.38);
+      background:
+        linear-gradient(145deg, rgba(8,18,35,0.82), rgba(0,0,0,0.78));
+      color: #e6edf3;
+      box-shadow:
+        0 16px 38px rgba(0,0,0,0.78),
+        0 0 26px rgba(65,120,255,0.14),
+        inset 0 0 20px rgba(255,255,255,0.035);
+      text-align: center;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .demo-card:active {
+      transform: scale(0.98);
+    }
+
+    .icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .demo-card span {
+      display: block;
+      font-family: "Cinzel", Georgia, serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1.1;
+      color: #f2f7ff;
+    }
+
+    .demo-card small {
+      display: block;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #b7c3d2;
+      line-height: 1.35;
+    }
+
+    .arrow {
+      display: block;
+      margin-top: 16px;
+      font-size: 24px;
+      color: #8eb8ff;
+    }
+
+    .footer {
+      margin-top: 28px;
+      display: grid;
+      gap: 12px;
+      text-align: center;
+    }
+
+    .footer p {
+      color: #9fb4d3;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .footer-btn {
+      width: 100%;
+      padding: 15px;
+      border-radius: 15px;
+      border: 1px solid rgba(127,184,255,0.35);
+      background: rgba(0,0,0,0.65);
+      color: #e6edf3;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: inherit;
+    }
+
+    @media (min-width: 760px) {
+      .demo-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <main class="dash-page">
-    <div class="dash-overlay"></div>
+  <main class="demo-page">
+    <section class="demo-wrap">
 
-    <section class="dash-hero">
-      <div class="pv-mark">⚔</div>
-      <h1>Project Vindex Demo</h1>
-      <p class="latin">Simulated Case Environment</p>
+      <header class="hero">
+        <div class="mark">⚔</div>
+        <h1>Project Vindex Demo</h1>
+        <p class="subtitle">Simulated Case Environment</p>
+      </header>
+
+      <div class="demo-banner">
+        Demo Mode — no real case data used
+      </div>
+
+      <section class="demo-grid">
+        <button class="demo-card" onclick="goDemoEvidence()">
+          <div class="icon">🔒</div>
+          <span>Evidence<br>Organizer</span>
+          <small>View fake sample evidence and doctrine mapping.</small>
+          <b class="arrow">→</b>
+        </button>
+
+        <button class="demo-card" onclick="resetDemo()">
+          <div class="icon">♻️</div>
+          <span>Reset<br>Demo</span>
+          <small>Reload the sample case from scratch.</small>
+          <b class="arrow">→</b>
+        </button>
+      </section>
+
+      <footer class="footer">
+        <button class="footer-btn" onclick="window.location.href='index.html?v=42000'">
+          Main App
+        </button>
+
+        <button class="footer-btn" onclick="goDemoEvidence()">
+          Open Demo Evidence
+        </button>
+
+        <p>Private case data stays separate.</p>
+      </footer>
+
     </section>
-
-    <section class="dash-actions">
-      <button class="dash-card" onclick="goDemoEvidence()">
-        <div class="card-icon">🔒</div>
-        <span>Evidence<br />Organizer</span>
-        <small>View fake sample evidence.</small>
-        <b>→</b>
-      </button>
-
-      <button class="dash-card" onclick="resetDemo()">
-        <div class="card-icon">♻️</div>
-        <span>Reset<br />Demo</span>
-        <small>Reload the sample case.</small>
-        <b>→</b>
-      </button>
-    </section>
-
-    <footer class="dash-footer">
-      <button onclick="window.location.href='index.html?v=41000'">Main App</button>
-      <p>Demo Mode — No real case data used</p>
-      <button onclick="goDemoEvidence()">Open</button>
-    </footer>
   </main>
 
   <script>
@@ -103,7 +297,7 @@
       loadDemoData(false);
       localStorage.setItem("vindex_mode", "demo");
       localStorage.setItem("vindex_logged_in", "true");
-      window.location.href = "evidence.html?v=41000";
+      window.location.href = "evidence.html?v=42000";
     }
 
     function resetDemo() {
