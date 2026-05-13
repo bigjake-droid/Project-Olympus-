@@ -1,21 +1,23 @@
 {
-  "name": "Project Vindex",
-  "short_name": "Vindex",
-  "start_url": "index.html",
+  "name": "Pro Se Defense Framework",
+  "short_name": "Defense App",
+  "description": "Tactical pro se legal defense organizer and strategy framework.",
+  "start_url": "/dashboard.html",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
-  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#1a1a1a",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "assets/logo-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "icon-512.png",
+      "src": "assets/logo-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
