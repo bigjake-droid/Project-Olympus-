@@ -1,121 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <title>Pro Se Guidebook</title>
-
-  <link rel="stylesheet" href="./style.css?v=5000" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VINDEX | Playbook</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/logo-192.png">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <main class="guide-page">
-    <div class="guide-overlay"></div>
+  <div class="vindex-container">
+    <header class="vindex-header">
+      <h1>TACTICAL PLAYBOOK</h1>
+      <p>Live Courtroom Procedural Responses</p>
+    </header>
 
-    <section class="guide-wrap">
+    <div class="playbook-card alert">
+      <h3>ITEM 11: THE CONTINUANCE BLOCKADE</h3>
+      <p><strong>Trigger:</strong> DDA asks for more time to "review" files.</p>
+      <div class="playbook-script">
+        "Your Honor, I object to any further continuances. The previous continuance was granted specifically for discovery review—a review my former counsel failed to perform. I have now stepped in pro se, secured the evidence, and filed on time. The State does not need more time; the State needs to comply with Rule 16. I am ready to proceed today, and I ask the Court to rule on my Rule 16 Motion."
+      </div>
+    </div>
 
-      <button class="guide-back" onclick="goBack()">← Return to Vindex</button>
+    <div class="playbook-card">
+      <h3>ITEM 10: DOUBLE-STANDARD SHUTDOWN</h3>
+      <p><strong>Trigger:</strong> Judge attempts to excuse DA's procedural failures.</p>
+      <div class="playbook-script">
+        "Your Honor, as a pro se defendant, I am expected to strictly adhere to the Rules of Criminal Procedure, and I have done so. I respectfully request the Court hold the District Attorney—a fully resourced professional agency—to that exact same standard regarding my pending motions."
+      </div>
+    </div>
 
-      <header class="guide-hero">
-        <p class="guide-kicker">PROJECT VINDEX FIELD MANUAL</p>
-        <h1>Pro Se Guidebook</h1>
-        <p class="guide-subtitle">A system, not a guess.</p>
-        <p class="guide-line">Records win cases. Memory loses them.</p>
-      </header>
-
-      <section class="guide-command">
-        <span>Directive</span>
-        <p>Build the record before the record is built against you.</p>
-      </section>
-
-      <section class="guide-grid">
-
-        <!-- CARD -->
-        <article class="guide-card active" onclick="toggleCard(this)">
-          <div class="guide-header">
-            <div class="guide-badge">01</div>
-            <div>
-              <h2>Before Court</h2>
-              <small>TACTIC</small>
-            </div>
-            <span class="toggle-mark">−</span>
-          </div>
-
-          <div class="guide-body">
-            <div class="guide-line-item">Know your charge.</div>
-            <div class="guide-line-item">Know your deadlines.</div>
-            <div class="guide-line-item">Know what you are asking for.</div>
-          </div>
-        </article>
-
-        <article class="guide-card" onclick="toggleCard(this)">
-          <div class="guide-header">
-            <div class="guide-badge">02</div>
-            <div>
-              <h2>Evidence Rules</h2>
-              <small>EVIDENCE</small>
-            </div>
-            <span class="toggle-mark">+</span>
-          </div>
-
-          <div class="guide-body">
-            <div class="guide-line-item">Label every exhibit.</div>
-            <div class="guide-line-item">Track its source.</div>
-            <div class="guide-line-item">Explain why it matters.</div>
-          </div>
-        </article>
-
-        <article class="guide-card" onclick="toggleCard(this)">
-          <div class="guide-header">
-            <div class="guide-badge">03</div>
-            <div>
-              <h2>Motions</h2>
-              <small>STRUCTURE</small>
-            </div>
-            <span class="toggle-mark">+</span>
-          </div>
-
-          <div class="guide-body">
-            <div class="guide-line-item">State the issue.</div>
-            <div class="guide-line-item">Provide the facts.</div>
-            <div class="guide-line-item">Ask for relief.</div>
-          </div>
-        </article>
-
-        <article class="guide-card" onclick="toggleCard(this)">
-          <div class="guide-header">
-            <div class="guide-badge">04</div>
-            <div>
-              <h2>Deadlines</h2>
-              <small>CRITICAL</small>
-            </div>
-            <span class="toggle-mark">+</span>
-          </div>
-
-          <div class="guide-body">
-            <div class="guide-line-item">Calendar everything.</div>
-            <div class="guide-line-item">Set reminders.</div>
-            <div class="guide-line-item">Keep proof of filing.</div>
-          </div>
-        </article>
-
-      </section>
-    </section>
-  </main>
-
-  <script>
-    function goBack() {
-      window.location.href = "dashboard.html?v=5000";
-    }
-
-    function toggleCard(card) {
-      card.classList.toggle("active");
-      const mark = card.querySelector(".toggle-mark");
-      mark.textContent = card.classList.contains("active") ? "−" : "+";
-    }
-  </script>
-
+    <a href="dashboard.html" class="vindex-btn" style="margin-top: 30px;">RETURN TO DASHBOARD</a>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
