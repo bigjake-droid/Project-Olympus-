@@ -1,539 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Vindex Evidence Organizer</title>
-
-  <link rel="stylesheet" href="./style.css?v=41000" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-  <style>
-    input,
-    textarea {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      padding: 15px;
-      margin: 8px 0;
-      border-radius: 12px;
-      border: 1px solid rgba(130,170,230,0.42);
-      background: rgba(0,0,0,0.78);
-      color: #e6edf3;
-      font-size: 15px;
-      outline: none;
-      font-family: "Inter", Arial, sans-serif;
-    }
-
-    input::placeholder,
-    textarea::placeholder {
-      color: rgba(230,237,243,0.55);
-    }
-
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-      line-height: 1.45;
-    }
-
-    input:focus,
-    textarea:focus {
-      border-color: rgba(127,184,255,0.85);
-      box-shadow: 0 0 16px rgba(90,168,255,0.25);
-      background: rgba(0,0,0,0.88);
-    }
-
-    .mode-banner {
-      margin-bottom: 14px;
-      padding: 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(127,184,255,0.38);
-      background: rgba(20,70,160,0.16);
-      color: #b9dcff;
-      text-align: center;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-size: 12px;
-    }
-
-    .doctrine-box {
-      margin-top: 14px;
-      display: grid;
-      gap: 9px;
-    }
-
-    .doctrine-option {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 13px;
-      border-radius: 12px;
-      border: 1px solid rgba(127,184,255,0.28);
-      background: rgba(255,255,255,0.035);
-      color: #cbd6e2;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .doctrine-option:hover {
-      border-color: #5aa8ff;
-      box-shadow: 0 0 12px rgba(90,168,255,0.35);
-    }
-
-    .doctrine-option input {
-      -webkit-appearance: auto;
-      appearance: auto;
-      width: 18px;
-      height: 18px;
-      margin: 0;
-      accent-color: #5aa8ff;
-      flex: 0 0 auto;
-    }
-
-    .doctrine-option input:checked + span {
-      color: #7fc2ff;
-      font-weight: 700;
-    }
-
-    .evidence-link {
-      color: #7fb8ff;
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .card-actions {
-      display: flex;
-      gap: 7px;
-      margin-left: auto;
-      align-items: center;
-    }
-
-    .delete-small,
-    .edit-small {
-      width: 36px;
-      height: 36px;
-      min-width: 36px;
-      margin: 0;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.22);
-      background: rgba(0,0,0,0.48);
-      color: #fff;
-      font-size: 18px;
-      padding: 0;
-      line-height: 1;
-    }
-
-    .edit-small {
-      color: #7fc2ff;
-    }
-
-    .evidence-actions {
-      display: grid;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .evidence-count {
-      margin-bottom: 12px;
-      color: #9fb4d3;
-      font-size: 13px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      text-align: center;
-    }
-
-    .editing-banner {
-      display: none;
-      margin-bottom: 12px;
-      padding: 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(127,184,255,0.45);
-      background: rgba(40,100,180,0.12);
-      color: #b9dcff;
-      text-align: center;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-size: 12px;
-    }
-
-    .editing-banner.show {
-      display: block;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VINDEX | Timeline</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <main class="guide-page">
-    <div class="guide-overlay"></div>
+  <div class="vindex-container">
+    <header class="vindex-header">
+      <h1>CASE 25CR1298 : CHRONOLOGY</h1>
+      <p style="color: var(--accent-color); font-weight: bold;">STATUS: ACTIVE AUDIT</p>
+    </header>
 
-    <section class="guide-wrap">
-      <button class="guide-back" onclick="returnToDashboard()">
-        ← Return to Vindex
-      </button>
-
-      <div id="modeBanner" class="mode-banner"></div>
-
-      <header class="guide-hero">
-        <p class="guide-kicker">VINDEX EVIDENCE COMMAND</p>
-        <h1>Evidence Organizer</h1>
-        <p class="guide-subtitle">Index the proof. Control the record.</p>
-        <p class="guide-line">
-          Store the command record: title, date, source, link, doctrine, and what it proves.
-        </p>
-      </header>
-
-      <section class="guide-command">
-        <span>Add Evidence</span>
-
-        <div id="editingBanner" class="editing-banner">
-          Editing mode active
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <h3 class="timestamp">0800 HRS - The Civil Baseline</h3>
+          <h2 class="event-title">Contract Dispute Origination</h2>
+          <p class="event-detail">Victory Motors initiates dispute regarding the $1,499 down payment. Matter is strictly civil in nature.</p>
+          <span class="evidence-tag">Exhibit: Contract Ledger</span>
         </div>
+      </div>
 
-        <input id="evTitle" placeholder="Evidence Title" />
-        <input id="evDate" type="date" />
-        <input id="evType" placeholder="Type: Email, Report, Video, Audio, Photo" />
-        <input id="evSource" placeholder="Source: DA, Police, Personal, Witness" />
-        <textarea id="evSummary" placeholder="What does this evidence prove?"></textarea>
-        <input id="evLink" placeholder="Google Drive link or file URL" />
-
-        <div class="doctrine-box">
-          <label class="doctrine-option">
-            <input type="checkbox" value="D01 Pro Se Awareness">
-            <span>D01 Pro Se Awareness</span>
-          </label>
-
-          <label class="doctrine-option">
-            <input type="checkbox" value="D02 End State">
-            <span>D02 End State</span>
-          </label>
-
-          <label class="doctrine-option">
-            <input type="checkbox" value="D03 Records Acquisition">
-            <span>D03 Records Acquisition</span>
-          </label>
-
-          <label class="doctrine-option">
-            <input type="checkbox" value="D04 Record Over Memory">
-            <span>D04 Record Over Memory</span>
-          </label>
-
-          <label class="doctrine-option">
-            <input type="checkbox" value="D05 Motion Structure">
-            <span>D05 Motion Structure</span>
-          </label>
-
-          <label class="doctrine-option">
-            <input type="checkbox" value="D06 Evidence Handling">
-            <span>D06 Evidence Handling</span>
-          </label>
-
-          <label class="doctrine-option">
-            <input type="checkbox" value="D07 Evidence Integrity">
-            <span>D07 Evidence Integrity</span>
-          </label>
-
-          <label class="doctrine-option">
-            <input type="checkbox" value="D08 Evaluating Resolutions">
-            <span>D08 Evaluating Resolutions</span>
-          </label>
-
-          <label class="doctrine-option">
-            <input type="checkbox" value="D09 Deadline Management">
-            <span>D09 Deadline Management</span>
-          </label>
-
-          <label class="doctrine-option">
-            <input type="checkbox" value="D10 Professional Composure">
-            <span>D10 Professional Composure</span>
-          </label>
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <h3 class="timestamp">0915 HRS - The Mens Rea Trap</h3>
+          <h2 class="event-title">Defendant Summons Law Enforcement</h2>
+          <p class="event-detail">Defendant actively initiates contact with Johnstown Police Department to the location of the vehicle, negating any "intent to permanently deprive."</p>
+          <span class="evidence-tag">Exhibit G: Outbound Call Logs</span>
         </div>
+      </div>
 
-        <div class="evidence-actions">
-          <button id="saveEvidenceBtn" class="primary-btn" onclick="saveEvidence()">Add Evidence</button>
-          <button class="secondary-btn" onclick="clearForm()">Clear Form</button>
+      <div class="timeline-item">
+        <div class="timeline-marker critical-gap"></div>
+        <div class="timeline-content critical-content">
+          <h3 class="timestamp">0930 HRS - 0946 HRS</h3>
+          <h2 class="event-title">The 16-Minute Dispatch Gap</h2>
+          <p class="event-detail">Critical failure in WCRCC logs. State timeline breaks down. Evidence of manipulated or withheld reporting.</p>
+          <span class="evidence-tag alert-tag">Rule 16 Violation Logged</span>
         </div>
-      </section>
+      </div>
 
-      <div id="evidenceCount" class="evidence-count"></div>
-
-      <section id="evidenceList" class="guide-grid"></section>
-    </section>
-
-    <div id="messageBox" class="message-box"></div>
-  </main>
-
-  <script>
-    let editingId = null;
-
-    function isDemoMode() {
-      return localStorage.getItem("vindex_mode") === "demo";
-    }
-
-    function getStorageKey() {
-      return isDemoMode() ? "vindex_demo_evidence" : "vindex_evidence";
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-      const loggedIn = localStorage.getItem("vindex_logged_in");
-
-      if (loggedIn !== "true") {
-        window.location.href = "index.html?v=41000";
-        return;
-      }
-
-      const modeBanner = document.getElementById("modeBanner");
-
-      if (isDemoMode()) {
-        modeBanner.textContent = "Demo Mode — sample evidence only";
-      } else {
-        modeBanner.textContent = "Private Case Mode — local evidence index";
-      }
-
-      renderEvidence();
-    });
-
-    function returnToDashboard() {
-      if (isDemoMode()) {
-        window.location.href = "demo.html?v=41000";
-      } else {
-        window.location.href = "dashboard.html?v=41000";
-      }
-    }
-
-    function getSelectedDoctrines() {
-      return Array.from(document.querySelectorAll(".doctrine-option input:checked"))
-        .map(function (box) {
-          return box.value;
-        });
-    }
-
-    function saveEvidence() {
-      const title = document.getElementById("evTitle").value.trim();
-      const date = document.getElementById("evDate").value;
-      const type = document.getElementById("evType").value.trim();
-      const source = document.getElementById("evSource").value.trim();
-      const summary = document.getElementById("evSummary").value.trim();
-      const link = document.getElementById("evLink").value.trim();
-      const doctrine = getSelectedDoctrines();
-
-      if (!title || !date || !type || !source || !summary) {
-        showMessage("Complete title, date, type, source, and summary.");
-        return;
-      }
-
-      const storageKey = getStorageKey();
-      const evidence = JSON.parse(localStorage.getItem(storageKey)) || [];
-
-      if (editingId !== null) {
-        const index = evidence.findIndex(function (item) {
-          return item.id === editingId;
-        });
-
-        if (index !== -1) {
-          evidence[index] = {
-            ...evidence[index],
-            title: title,
-            date: date,
-            type: type,
-            source: source,
-            summary: summary,
-            link: link,
-            doctrine: doctrine,
-            updatedAt: new Date().toISOString()
-          };
-        }
-
-        editingId = null;
-        localStorage.setItem(storageKey, JSON.stringify(evidence));
-
-        clearForm();
-        renderEvidence();
-        showMessage("Evidence updated.");
-        return;
-      }
-
-      evidence.push({
-        id: Date.now(),
-        title: title,
-        date: date,
-        type: type,
-        source: source,
-        summary: summary,
-        link: link,
-        doctrine: doctrine,
-        createdAt: new Date().toISOString()
-      });
-
-      localStorage.setItem(storageKey, JSON.stringify(evidence));
-
-      clearForm();
-      renderEvidence();
-      showMessage("Evidence added.");
-    }
-
-    function renderEvidence() {
-      const container = document.getElementById("evidenceList");
-      const countBox = document.getElementById("evidenceCount");
-      const storageKey = getStorageKey();
-      const evidence = JSON.parse(localStorage.getItem(storageKey)) || [];
-
-      countBox.textContent = evidence.length + " evidence record" + (evidence.length === 1 ? "" : "s") + " logged";
-
-      if (!evidence.length) {
-        container.innerHTML = `
-          <article class="guide-card active">
-            <div class="guide-header">
-              <div class="guide-badge">0</div>
-              <div>
-                <h2>No Evidence Logged</h2>
-                <small>START THE RECORD</small>
-              </div>
-            </div>
-            <div class="guide-body">
-              <div class="guide-line-item">Add your first evidence entry above.</div>
-            </div>
-          </article>
-        `;
-        return;
-      }
-
-      const sorted = evidence.slice().sort(function (a, b) {
-        return new Date(b.date) - new Date(a.date);
-      });
-
-      container.innerHTML = sorted.map(function (item) {
-        const doctrines = item.doctrine && item.doctrine.length
-          ? item.doctrine.join(", ")
-          : "No doctrine tagged";
-
-        const linkHtml = item.link
-          ? `<a class="evidence-link" href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer">Open Evidence</a>`
-          : `No link added`;
-
-        return `
-          <article class="guide-card active">
-            <div class="guide-header">
-              <div class="guide-badge">${escapeHtml(item.type.substring(0, 2).toUpperCase())}</div>
-
-              <div>
-                <h2>${escapeHtml(item.title)}</h2>
-                <small>${escapeHtml(item.date)} · ${escapeHtml(item.source)}</small>
-              </div>
-
-              <div class="card-actions">
-                <button class="edit-small" onclick="editEvidence(${item.id})">✎</button>
-                <button class="delete-small" onclick="deleteEvidence(${item.id})">×</button>
-              </div>
-            </div>
-
-            <div class="guide-body">
-              <div class="guide-line-item"><strong>Type:</strong> ${escapeHtml(item.type)}</div>
-              <div class="guide-line-item"><strong>Summary:</strong> ${escapeHtml(item.summary)}</div>
-              <div class="guide-line-item"><strong>Doctrine:</strong> ${escapeHtml(doctrines)}</div>
-              <div class="guide-line-item">${linkHtml}</div>
-            </div>
-          </article>
-        `;
-      }).join("");
-    }
-
-    function editEvidence(id) {
-      const storageKey = getStorageKey();
-      const evidence = JSON.parse(localStorage.getItem(storageKey)) || [];
-
-      const item = evidence.find(function (entry) {
-        return entry.id === id;
-      });
-
-      if (!item) {
-        showMessage("Evidence not found.");
-        return;
-      }
-
-      editingId = id;
-
-      document.getElementById("evTitle").value = item.title || "";
-      document.getElementById("evDate").value = item.date || "";
-      document.getElementById("evType").value = item.type || "";
-      document.getElementById("evSource").value = item.source || "";
-      document.getElementById("evSummary").value = item.summary || "";
-      document.getElementById("evLink").value = item.link || "";
-
-      document.querySelectorAll(".doctrine-option input").forEach(function (box) {
-        box.checked = item.doctrine && item.doctrine.includes(box.value);
-      });
-
-      document.getElementById("saveEvidenceBtn").textContent = "Update Evidence";
-      document.getElementById("editingBanner").classList.add("show");
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-      showMessage("Editing mode activated.");
-    }
-
-    function deleteEvidence(id) {
-      const storageKey = getStorageKey();
-      const evidence = JSON.parse(localStorage.getItem(storageKey)) || [];
-
-      const updated = evidence.filter(function (item) {
-        return item.id !== id;
-      });
-
-      localStorage.setItem(storageKey, JSON.stringify(updated));
-
-      if (editingId === id) {
-        editingId = null;
-        clearForm();
-      }
-
-      renderEvidence();
-      showMessage("Evidence removed.");
-    }
-
-    function clearForm() {
-      editingId = null;
-
-      document.getElementById("evTitle").value = "";
-      document.getElementById("evDate").value = "";
-      document.getElementById("evType").value = "";
-      document.getElementById("evSource").value = "";
-      document.getElementById("evSummary").value = "";
-      document.getElementById("evLink").value = "";
-
-      document.querySelectorAll(".doctrine-option input").forEach(function (box) {
-        box.checked = false;
-      });
-
-      document.getElementById("saveEvidenceBtn").textContent = "Add Evidence";
-      document.getElementById("editingBanner").classList.remove("show");
-    }
-
-    function showMessage(text) {
-      const box = document.getElementById("messageBox");
-
-      box.textContent = text;
-      box.classList.add("show");
-
-      setTimeout(function () {
-        box.classList.remove("show");
-      }, 1800);
-    }
-
-    function escapeHtml(value) {
-      return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
-  </script>
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <h3 class="timestamp">Post-Seizure</h3>
+          <h2 class="event-title">State Entity Civil Determinations</h2>
+          <p class="event-detail">Colorado Auto Industry Division and CIRSA officially classify the event as a civil dispute/repossession. Officer Yerk audio confirms initial civil classification.</p>
+          <span class="evidence-tag">Exhibit D: Yerk Audio / AID Ruling</span>
+        </div>
+      </div>
+    </div>
+    
+    <div style="margin-top: 30px;">
+        <a href="dashboard.html" class="vindex-btn">RETURN TO DASHBOARD</a>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
