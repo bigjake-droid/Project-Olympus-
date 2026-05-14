@@ -4,149 +4,51 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VINDEX | Timeline</title>
-  <style>
-    /* HARDCODED EMBEDDED CSS - CANNOT BE STRIPPED */
-    *, *::before, *::after { box-sizing: border-box; }
-    body { 
-      background-color: #0a0a0a; 
-      color: #e0e0e0; 
-      font-family: 'Courier New', Courier, monospace; 
-      margin: 0; 
-      padding: 0; 
-      line-height: 1.6; 
-    }
-    .vindex-container { max-width: 800px; margin: 0 auto; padding: 20px; }
-    h1, h2, h3 { text-transform: uppercase; margin-top: 0; }
-    .vindex-header { 
-      border-bottom: 2px solid #1e1e1e; 
-      padding-bottom: 15px; 
-      margin-bottom: 30px; 
-      text-align: center; 
-    }
-    .vindex-header h1 { color: #e0e0e0; margin-bottom: 5px; font-size: 1.8em; }
-    .vindex-header p { color: #4a90e2; margin: 0; font-size: 0.9em; font-weight: bold;}
-    
-    /* TIMELINE STRUCTURE */
-    .timeline { position: relative; padding-left: 30px; }
-    .timeline::before { 
-      content: ''; 
-      position: absolute; 
-      top: 0; 
-      left: 11px; 
-      height: 100%; 
-      width: 2px; 
-      background-color: #1e1e1e; 
-    }
-    .timeline-item { position: relative; margin-bottom: 40px; }
-    .timeline-marker { 
-      position: absolute; 
-      top: 5px; 
-      left: -24px; 
-      width: 10px; 
-      height: 10px; 
-      border-radius: 50%; 
-      background-color: #4a90e2; 
-      border: 3px solid #0a0a0a; 
-      box-shadow: 0 0 0 2px #4a90e2; 
-    }
-    .timeline-content { 
-      background-color: #1e1e1e; 
-      padding: 20px; 
-      border-radius: 4px; 
-      border-left: 3px solid #4a90e2; 
-    }
-    
-    /* CRITICAL ALERT STYLING */
-    .timeline-marker.critical-gap { 
-      background-color: #d32f2f; 
-      box-shadow: 0 0 0 2px #d32f2f; 
-    }
-    .timeline-content.critical-content { 
-      border-left: 3px solid #d32f2f; 
-      background-color: rgba(211, 47, 47, 0.05); 
-    }
-    
-    /* TEXT & TAGS */
-    .timestamp { font-size: 0.9em; color: #9e9e9e; margin: 0 0 10px 0; }
-    .event-title { margin: 0 0 10px 0; font-size: 1.2em; color: #ffffff; }
-    .event-detail { font-family: sans-serif; line-height: 1.5; margin-bottom: 15px; }
-    .evidence-tag { 
-      display: inline-block; 
-      background-color: #333; 
-      padding: 4px 8px; 
-      font-size: 0.8em; 
-      border-radius: 2px; 
-    }
-    .alert-tag { background-color: #d32f2f; color: white; }
-    
-    /* BUTTONS */
-    .vindex-btn { 
-      display: block; 
-      width: 100%; 
-      background-color: #1e1e1e; 
-      color: #4a90e2; 
-      border: 1px solid #4a90e2; 
-      padding: 15px; 
-      font-size: 1.1em; 
-      font-family: 'Courier New', Courier, monospace; 
-      text-transform: uppercase; 
-      text-align: center; 
-      text-decoration: none; 
-      border-radius: 4px; 
-      cursor: pointer; 
-      margin-top: 30px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="vindex-container">
-    <header class="vindex-header">
-      <h1>CASE 25CR1298 : CHRONOLOGY</h1>
-      <p>STATUS: ACTIVE AUDIT</p>
-    </header>
+    <div class="header-title">
+      <h1>CASE CHRONOLOGY</h1>
+      <p class="subtitle" style="color: #4ade80;">STATUS: ACTIVE AUDIT</p>
+    </div>
 
-    <div class="timeline">
-      
-      <div class="timeline-item">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <h3 class="timestamp">0800 HRS - The Civil Baseline</h3>
-          <h2 class="event-title">Contract Dispute Origination</h2>
-          <p class="event-detail">Victory Motors initiates dispute regarding the $1,499 down payment. Matter is strictly civil in nature.</p>
+    <div class="glass-card">
+      <div class="timeline">
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timestamp">0800 HRS - The Civil Baseline</div>
+          <div class="event-title">Contract Dispute Origination</div>
+          <div class="event-detail">Victory Motors initiates dispute regarding the $1,499 down payment. Matter is strictly civil in nature.</div>
           <span class="evidence-tag">Exhibit: Contract Ledger</span>
         </div>
-      </div>
 
-      <div class="timeline-item">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <h3 class="timestamp">0915 HRS - The Mens Rea Trap</h3>
-          <h2 class="event-title">Defendant Summons Law Enforcement</h2>
-          <p class="event-detail">Defendant actively initiates contact with Johnstown Police Department to the location of the vehicle, negating any "intent to permanently deprive."</p>
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timestamp">0915 HRS - The Mens Rea Trap</div>
+          <div class="event-title">Defendant Summons Law Enforcement</div>
+          <div class="event-detail">Defendant actively initiates contact with Johnstown Police Department to the location of the vehicle, negating any "intent to permanently deprive."</div>
           <span class="evidence-tag">Exhibit G: Outbound Call Logs</span>
         </div>
-      </div>
 
-      <div class="timeline-item">
-        <div class="timeline-marker critical-gap"></div>
-        <div class="timeline-content critical-content">
-          <h3 class="timestamp">0930 HRS - 0946 HRS</h3>
-          <h2 class="event-title">The 16-Minute Dispatch Gap</h2>
-          <p class="event-detail">Critical failure in WCRCC logs. State timeline breaks down. Evidence of manipulated or withheld reporting.</p>
-          <span class="evidence-tag alert-tag">Rule 16 Violation Logged</span>
+        <div class="timeline-item">
+          <div class="timeline-marker critical"></div>
+          <div class="timestamp" style="color: #ef4444;">0930 HRS - 0946 HRS</div>
+          <div class="event-title">The 16-Minute Dispatch Gap</div>
+          <div class="event-detail">Critical failure in WCRCC logs. State timeline breaks down. Evidence of manipulated or withheld reporting.</div>
+          <span class="evidence-tag alert">Rule 16 Violation Logged</span>
         </div>
-      </div>
 
-      <div class="timeline-item">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <h3 class="timestamp">Post-Seizure</h3>
-          <h2 class="event-title">State Entity Civil Determinations</h2>
-          <p class="event-detail">Colorado Auto Industry Division and CIRSA officially classify the event as a civil dispute/repossession. Officer Yerk audio confirms initial civil classification.</p>
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timestamp">Post-Seizure</div>
+          <div class="event-title">State Entity Civil Determinations</div>
+          <div class="event-detail">Colorado Auto Industry Division and CIRSA officially classify the event as a civil dispute/repossession. Officer Yerk audio confirms initial civil classification.</div>
           <span class="evidence-tag">Exhibit D: Yerk Audio / AID Ruling</span>
         </div>
-      </div>
 
+      </div>
     </div>
     
     <a href="dashboard.html" class="vindex-btn">RETURN TO DASHBOARD</a>
