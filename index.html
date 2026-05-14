@@ -1,23 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VINDEX | Initialize</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Project Vindex</title>
+
+  <link rel="stylesheet" href="style.css?v=30000" />
+  <link rel="manifest" href="manifest.json" />
+
+  <meta name="theme-color" content="#05070b" />
 </head>
+
 <body>
-  <div class="vindex-container" style="margin-top: 15vh;">
-    <div class="header-title" style="border: none;">
-      <h1 style="font-size: 2.5em;">VINDEX</h1>
-      <p class="subtitle">VOX DEI // Establish The Record</p>
+
+  <!-- LOGIN / SPLASH -->
+  <section id="loginScreen" class="screen active">
+    <div class="login-box">
+      <h1>VINDEX</h1>
+      <p>VOX DEI // Establish The Record</p>
+
+      <label>AUTHORIZATION CODE</label>
+      <input id="authCode" type="password" placeholder="••••••••••••" />
+
+      <button onclick="initializeSession()">INITIALIZE SESSION</button>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="dashboardScreen" class="screen">
+    <header class="hero">
+      <div class="sigil">⚔</div>
+      <h1>PROJECT VINDEX</h1>
+      <p>VOX DEI</p>
+    </header>
+
+    <main class="grid">
+
+      <div class="card" onclick="showScreen('guidebookScreen')">
+        <div class="icon">📖</div>
+        <h2>Pro Se Guidebook</h2>
+        <p>Doctrine. Discipline. Record control.</p>
+        <span>→</span>
+      </div>
+
+      <div class="card" onclick="showScreen('evidenceScreen')">
+        <div class="icon">🔒</div>
+        <h2>Evidence Organizer</h2>
+        <p>Index proof. Tag doctrine. Build leverage.</p>
+        <span>→</span>
+      </div>
+
+      <div class="card" onclick="showScreen('timelineScreen')">
+        <div class="icon">⏳</div>
+        <h2>Case Timeline</h2>
+        <p>Every event matters.</p>
+        <span>→</span>
+      </div>
+
+      <div class="card" onclick="showScreen('exportScreen')">
+        <div class="icon">📜</div>
+        <h2>Export Dossier</h2>
+        <p>Build. Export. Defend.</p>
+        <span>→</span>
+      </div>
+
+    </main>
+  </section>
+
+  <!-- GUIDEBOOK -->
+  <section id="guidebookScreen" class="screen page">
+    <button class="back" onclick="showScreen('dashboardScreen')">← Back</button>
+    <h1>PRO SE GUIDEBOOK</h1>
+
+    <div class="panel">
+      <h2>Rule One</h2>
+      <p>Do not argue from memory. Argue from records.</p>
     </div>
 
-    <div class="glass-card">
-      <label style="color: #94a3b8; font-size: 0.85em; margin-bottom: 8px; display: block; font-family: monospace;">AUTHORIZATION PROTOCOL</label>
-      <input type="password" class="vindex-input" value="Manning-25CR1298" readonly>
-      <a href="dashboard.html" class="vindex-btn primary">INITIALIZE SESSION</a>
+    <div class="panel">
+      <h2>Rule Two</h2>
+      <p>Chronology beats chaos. Build the timeline before building the argument.</p>
     </div>
-  </div>
+
+    <div class="panel">
+      <h2>Rule Three</h2>
+      <p>Every document should answer: who, what, when, where, why, and how it proves your point.</p>
+    </div>
+  </section>
+
+  <!-- EVIDENCE -->
+  <section id="evidenceScreen" class="screen page">
+    <button class="back" onclick="showScreen('dashboardScreen')">← Back</button>
+    <h1>EVIDENCE ORGANIZER</h1>
+
+    <div class="form-box">
+      <input id="evidenceTitle" placeholder="Evidence title" />
+      <textarea id="evidenceNotes" placeholder="What does this prove?"></textarea>
+      <input id="evidenceTag" placeholder="Tag / issue / element" />
+      <button onclick="addEvidence()">Add Evidence</button>
+    </div>
+
+    <div id="evidenceList" class="list"></div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timelineScreen" class="screen page">
+    <button class="back" onclick="showScreen('dashboardScreen')">← Back</button>
+    <h1>CASE CHRONOLOGY</h1>
+    <p class="status">STATUS: ACTIVE AUDIT</p>
+
+    <div class="form-box">
+      <input id="eventTime" placeholder="Time / Date" />
+      <input id="eventTitle" placeholder="Event title" />
+      <textarea id="eventNotes" placeholder="Details"></textarea>
+      <button onclick="addTimelineEvent()">Add Event</button>
+    </div>
+
+    <div id="timelineList" class="list"></div>
+  </section>
+
+  <!-- EXPORT -->
+  <section id="exportScreen" class="screen page">
+    <button class="back" onclick="showScreen('dashboardScreen')">← Back</button>
+    <h1>EXPORT DOSSIER</h1>
+
+    <button onclick="generateDossier()">Generate Dossier</button>
+
+    <textarea id="dossierOutput" readonly placeholder="Your dossier will appear here..."></textarea>
+  </section>
+
+  <script src="script.js?v=30000"></script>
 </body>
 </html>
