@@ -1,131 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Project Vindex</title>
-
-  <link rel="stylesheet" href="./style.css?v=30001" />
-  <link rel="manifest" href="./manifest.json" />
-
-  <meta name="theme-color" content="#05070b" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VINDEX | COMMAND</title>
+  <style>
+    /* HARDCODED ARMOR - CANNOT BE STRIPPED */
+    * { box-sizing: border-box; font-family: 'Courier New', monospace; }
+    body { background: #050505; color: #fff; margin: 0; padding: 20px; line-height: 1.5; }
+    
+    .glass-panel {
+      background: rgba(25, 25, 25, 0.9);
+      border: 1px solid #333;
+      border-left: 4px solid #4a90e2;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 4px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    
+    h1 { margin: 0 0 5px 0; font-size: 1.8em; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid #333; padding-bottom: 10px;}
+    h2 { color: #4a90e2; font-size: 1.2em; margin-top: 0; margin-bottom: 20px; text-transform: uppercase; }
+    
+    /* TIMELINE */
+    .timeline-item { margin-bottom: 30px; padding-left: 20px; border-left: 2px solid #4a90e2; position: relative;}
+    .timeline-item::before {
+      content: ''; position: absolute; left: -7px; top: 0; width: 12px; height: 12px; background: #050505; border: 2px solid #4a90e2; border-radius: 50%;
+    }
+    .timeline-item.critical { border-left-color: #d32f2f; background: rgba(211, 47, 47, 0.05); padding-top: 10px; padding-bottom: 10px; border-radius: 0 4px 4px 0;}
+    .timeline-item.critical::before { border-color: #d32f2f; background: #d32f2f; }
+    
+    .ts { font-size: 0.9em; color: #888; margin-bottom: 5px; display: block; }
+    .event-title { font-size: 1.1em; font-weight: bold; color: #fff; }
+    .event-desc { color: #ccc; font-family: sans-serif; font-size: 0.95em; display: block; margin-top: 5px; }
+    .tag { background: #111; padding: 4px 8px; font-size: 0.8em; border: 1px solid #333; border-radius: 3px; display: inline-block; margin-top: 10px; color: #4ade80;}
+    
+    /* PLAYBOOK SCRIPT */
+    .script-box {
+      background: #000; padding: 15px; border: 1px solid #333; color: #4ade80; 
+      font-size: 0.95em; line-height: 1.6; margin-top: 10px; border-radius: 4px;
+    }
+  </style>
 </head>
-
 <body>
 
-  <section id="loginScreen" class="screen active">
-    <div class="login-box">
-      <h1>VINDEX</h1>
-      <p>VOX DEI // Establish The Record</p>
+  <div class="glass-panel">
+    <h1>VINDEX // DASHBOARD</h1>
+    <span style="color: #888; font-size: 0.9em; font-weight: bold;">SUBJECT: J. MANNING | CASE 25CR1298</span>
+  </div>
 
-      <label for="authCode">AUTHORIZATION CODE</label>
-      <input id="authCode" type="password" placeholder="••••••••••••" />
-
-      <button type="button" onclick="initializeSession()">INITIALIZE SESSION</button>
-    </div>
-  </section>
-
-  <section id="dashboardScreen" class="screen">
-    <header class="hero">
-      <div class="sigil">⚔</div>
-      <h1>PROJECT VINDEX</h1>
-      <p>VOX DEI</p>
-    </header>
-
-    <main class="grid">
-      <div class="card" onclick="showScreen('guidebookScreen')">
-        <div class="icon">📖</div>
-        <h2>Pro Se Guidebook</h2>
-        <p>Doctrine. Discipline. Record control.</p>
-        <span>→</span>
-      </div>
-
-      <div class="card" onclick="showScreen('evidenceScreen')">
-        <div class="icon">🔒</div>
-        <h2>Evidence Organizer</h2>
-        <p>Index proof. Tag doctrine. Build leverage.</p>
-        <span>→</span>
-      </div>
-
-      <div class="card" onclick="showScreen('timelineScreen')">
-        <div class="icon">⏳</div>
-        <h2>Case Timeline</h2>
-        <p>Every event matters.</p>
-        <span>→</span>
-      </div>
-
-      <div class="card" onclick="showScreen('exportScreen')">
-        <div class="icon">📜</div>
-        <h2>Export Dossier</h2>
-        <p>Build. Export. Defend.</p>
-        <span>→</span>
-      </div>
-    </main>
-  </section>
-
-  <section id="guidebookScreen" class="screen page">
-    <button type="button" class="back" onclick="showScreen('dashboardScreen')">← Back</button>
-
-    <h1>PRO SE GUIDEBOOK</h1>
-
-    <div class="panel">
-      <h2>Rule One</h2>
-      <p>Do not argue from memory. Argue from records.</p>
+  <div class="glass-panel">
+    <h2>CASE CHRONOLOGY (ACTIVE AUDIT)</h2>
+    
+    <div class="timeline-item">
+      <span class="ts">0800 HRS - The Civil Baseline</span>
+      <span class="event-title">Contract Dispute Origination</span>
+      <span class="event-desc">Victory Motors initiates dispute regarding the $1,499 down payment. Matter is strictly civil in nature.</span>
+      <span class="tag">Exhibit: Contract Ledger</span>
     </div>
 
-    <div class="panel">
-      <h2>Rule Two</h2>
-      <p>Chronology beats chaos. Build the timeline before building the argument.</p>
+    <div class="timeline-item">
+      <span class="ts">0915 HRS - The Mens Rea Trap</span>
+      <span class="event-title">Defendant Summons Law Enforcement</span>
+      <span class="event-desc">Defendant actively initiates contact with Johnstown Police Department to the location of the vehicle, negating any "intent to permanently deprive."</span>
+      <span class="tag">Exhibit G: Outbound Call Logs</span>
     </div>
 
-    <div class="panel">
-      <h2>Rule Three</h2>
-      <p>Every document should answer who, what, when, where, why, and how it proves your point.</p>
-    </div>
-  </section>
-
-  <section id="evidenceScreen" class="screen page">
-    <button type="button" class="back" onclick="showScreen('dashboardScreen')">← Back</button>
-
-    <h1>EVIDENCE ORGANIZER</h1>
-
-    <div class="form-box">
-      <input id="evidenceTitle" type="text" placeholder="Evidence title" />
-      <textarea id="evidenceNotes" placeholder="What does this prove?"></textarea>
-      <input id="evidenceTag" type="text" placeholder="Tag / issue / element" />
-      <button type="button" onclick="addEvidence()">Add Evidence</button>
+    <div class="timeline-item critical">
+      <span class="ts" style="color: #d32f2f; font-weight: bold;">0930 HRS - 0946 HRS</span>
+      <span class="event-title" style="color: #d32f2f;">The 16-Minute Dispatch Gap</span>
+      <span class="event-desc">Critical failure in WCRCC logs. State timeline breaks down. Evidence of manipulated or withheld reporting.</span>
+      <span class="tag" style="color: #d32f2f; border-color: #d32f2f;">Rule 16 Violation Logged</span>
     </div>
 
-    <div id="evidenceList" class="list"></div>
-  </section>
-
-  <section id="timelineScreen" class="screen page">
-    <button type="button" class="back" onclick="showScreen('dashboardScreen')">← Back</button>
-
-    <h1>CASE CHRONOLOGY</h1>
-    <p class="status">STATUS: ACTIVE AUDIT</p>
-
-    <div class="form-box">
-      <input id="eventTime" type="text" placeholder="Time / Date" />
-      <input id="eventTitle" type="text" placeholder="Event title" />
-      <textarea id="eventNotes" placeholder="Details"></textarea>
-      <button type="button" onclick="addTimelineEvent()">Add Event</button>
+    <div class="timeline-item">
+      <span class="ts">Post-Seizure</span>
+      <span class="event-title">State Entity Civil Determinations</span>
+      <span class="event-desc">Colorado Auto Industry Division and CIRSA officially classify the event as a civil dispute/repossession. Officer Yerk audio confirms initial civil classification.</span>
+      <span class="tag">Exhibit D: Yerk Audio / AID Ruling</span>
     </div>
+  </div>
 
-    <div id="timelineList" class="list"></div>
-  </section>
+  <div class="glass-panel" style="border-left-color: #d32f2f;">
+    <h2 style="color: #d32f2f;">LIVE PROCEDURAL TRAPS</h2>
+    
+    <span class="event-title">ITEM 11: CONTINUANCE BLOCKADE</span>
+    <span style="color: #888; font-size: 0.9em; display: block; margin-top: 5px;">Trigger: DDA asks for more time to "review" files.</span>
+    
+    <div class="script-box">
+      "Your Honor, I object to any further continuances. The previous continuance was granted specifically for discovery review—a review my former counsel failed to perform. I have now stepped in pro se, secured the evidence, and filed on time. The State does not need more time; the State needs to comply with Rule 16. I am ready to proceed today, and I ask the Court to rule on my Rule 16 Motion."
+    </div>
+  </div>
 
-  <section id="exportScreen" class="screen page">
-    <button type="button" class="back" onclick="showScreen('dashboardScreen')">← Back</button>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script>
 
-    <h1>EXPORT DOSSIER</h1>
-
-    <button type="button" onclick="generateDossier()">Generate Dossier</button>
-
-    <textarea id="dossierOutput" readonly placeholder="Your dossier will appear here..."></textarea>
-  </section>
-
-  <script src="./script.js?v=30001"></script>
 </body>
 </html>
