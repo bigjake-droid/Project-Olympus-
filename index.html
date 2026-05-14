@@ -6,28 +6,26 @@
 
   <title>Project Vindex</title>
 
-  <link rel="stylesheet" href="style.css?v=30000" />
-  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="./style.css?v=30001" />
+  <link rel="manifest" href="./manifest.json" />
 
   <meta name="theme-color" content="#05070b" />
 </head>
 
 <body>
 
-  <!-- LOGIN / SPLASH -->
   <section id="loginScreen" class="screen active">
     <div class="login-box">
       <h1>VINDEX</h1>
       <p>VOX DEI // Establish The Record</p>
 
-      <label>AUTHORIZATION CODE</label>
+      <label for="authCode">AUTHORIZATION CODE</label>
       <input id="authCode" type="password" placeholder="••••••••••••" />
 
-      <button onclick="initializeSession()">INITIALIZE SESSION</button>
+      <button type="button" onclick="initializeSession()">INITIALIZE SESSION</button>
     </div>
   </section>
 
-  <!-- DASHBOARD -->
   <section id="dashboardScreen" class="screen">
     <header class="hero">
       <div class="sigil">⚔</div>
@@ -36,7 +34,6 @@
     </header>
 
     <main class="grid">
-
       <div class="card" onclick="showScreen('guidebookScreen')">
         <div class="icon">📖</div>
         <h2>Pro Se Guidebook</h2>
@@ -64,13 +61,12 @@
         <p>Build. Export. Defend.</p>
         <span>→</span>
       </div>
-
     </main>
   </section>
 
-  <!-- GUIDEBOOK -->
   <section id="guidebookScreen" class="screen page">
-    <button class="back" onclick="showScreen('dashboardScreen')">← Back</button>
+    <button type="button" class="back" onclick="showScreen('dashboardScreen')">← Back</button>
+
     <h1>PRO SE GUIDEBOOK</h1>
 
     <div class="panel">
@@ -85,51 +81,51 @@
 
     <div class="panel">
       <h2>Rule Three</h2>
-      <p>Every document should answer: who, what, when, where, why, and how it proves your point.</p>
+      <p>Every document should answer who, what, when, where, why, and how it proves your point.</p>
     </div>
   </section>
 
-  <!-- EVIDENCE -->
   <section id="evidenceScreen" class="screen page">
-    <button class="back" onclick="showScreen('dashboardScreen')">← Back</button>
+    <button type="button" class="back" onclick="showScreen('dashboardScreen')">← Back</button>
+
     <h1>EVIDENCE ORGANIZER</h1>
 
     <div class="form-box">
-      <input id="evidenceTitle" placeholder="Evidence title" />
+      <input id="evidenceTitle" type="text" placeholder="Evidence title" />
       <textarea id="evidenceNotes" placeholder="What does this prove?"></textarea>
-      <input id="evidenceTag" placeholder="Tag / issue / element" />
-      <button onclick="addEvidence()">Add Evidence</button>
+      <input id="evidenceTag" type="text" placeholder="Tag / issue / element" />
+      <button type="button" onclick="addEvidence()">Add Evidence</button>
     </div>
 
     <div id="evidenceList" class="list"></div>
   </section>
 
-  <!-- TIMELINE -->
   <section id="timelineScreen" class="screen page">
-    <button class="back" onclick="showScreen('dashboardScreen')">← Back</button>
+    <button type="button" class="back" onclick="showScreen('dashboardScreen')">← Back</button>
+
     <h1>CASE CHRONOLOGY</h1>
     <p class="status">STATUS: ACTIVE AUDIT</p>
 
     <div class="form-box">
-      <input id="eventTime" placeholder="Time / Date" />
-      <input id="eventTitle" placeholder="Event title" />
+      <input id="eventTime" type="text" placeholder="Time / Date" />
+      <input id="eventTitle" type="text" placeholder="Event title" />
       <textarea id="eventNotes" placeholder="Details"></textarea>
-      <button onclick="addTimelineEvent()">Add Event</button>
+      <button type="button" onclick="addTimelineEvent()">Add Event</button>
     </div>
 
     <div id="timelineList" class="list"></div>
   </section>
 
-  <!-- EXPORT -->
   <section id="exportScreen" class="screen page">
-    <button class="back" onclick="showScreen('dashboardScreen')">← Back</button>
+    <button type="button" class="back" onclick="showScreen('dashboardScreen')">← Back</button>
+
     <h1>EXPORT DOSSIER</h1>
 
-    <button onclick="generateDossier()">Generate Dossier</button>
+    <button type="button" onclick="generateDossier()">Generate Dossier</button>
 
     <textarea id="dossierOutput" readonly placeholder="Your dossier will appear here..."></textarea>
   </section>
 
-  <script src="script.js?v=30000"></script>
+  <script src="./script.js?v=30001"></script>
 </body>
 </html>
