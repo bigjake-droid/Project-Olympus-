@@ -1,4 +1,8 @@
-/* Vindex Core Variables */
+/* Vindex Core Variables & Universal Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 :root {
   --bg-color: #0a0a0a;
   --surface-color: #1e1e1e;
@@ -6,7 +10,6 @@
   --text-secondary: #9e9e9e;
   --accent-color: #4a90e2;
   --alert-color: #d32f2f;
-  --success-color: #2e7d32;
 }
 
 body {
@@ -51,7 +54,7 @@ h1, h2, h3 { text-transform: uppercase; margin-top: 0; }
   border: 1px solid var(--accent-color);
   padding: 15px;
   font-size: 1.1em;
-  font-family: inherit;
+  font-family: 'Courier New', Courier, monospace;
   text-transform: uppercase;
   text-align: center;
   text-decoration: none;
@@ -70,6 +73,17 @@ h1, h2, h3 { text-transform: uppercase; margin-top: 0; }
   color: #000;
 }
 
+/* Form Inputs */
+.vindex-input {
+  width: 100%;
+  background-color: #000;
+  border: 1px solid var(--surface-color);
+  color: var(--text-primary);
+  padding: 12px;
+  font-family: 'Courier New', Courier, monospace;
+  margin-bottom: 15px;
+}
+
 /* Playbook Cards */
 .playbook-card {
   background-color: var(--surface-color);
@@ -82,21 +96,56 @@ h1, h2, h3 { text-transform: uppercase; margin-top: 0; }
   background-color: #000;
   padding: 15px;
   border: 1px solid #333;
-  color: #4ade80; /* Terminal Green for scripts */
+  color: #4ade80;
   font-size: 0.95em;
   margin-top: 10px;
 }
 
-/* Form Inputs (For Login/Gate) */
-.vindex-input {
-  width: 100%;
-  background-color: #000;
-  border: 1px solid var(--surface-color);
-  color: var(--text-primary);
-  padding: 12px;
-  font-family: inherit;
-  margin-bottom: 15px;
-  box-sizing: border-box;
+/* Timeline Components */
+.timeline {
+  position: relative;
+  padding-left: 30px;
 }
-
-/* (The Timeline CSS from earlier remains exactly the same, append it here if needed) */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 11px;
+  height: 100%;
+  width: 2px;
+  background-color: var(--surface-color);
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+.timeline-marker {
+  position: absolute;
+  top: 5px;
+  left: -24px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  border: 3px solid var(--bg-color);
+  box-shadow: 0 0 0 2px var(--accent-color);
+}
+.timeline-content {
+  background-color: var(--surface-color);
+  padding: 20px;
+  border-radius: 4px;
+  border-left: 3px solid var(--accent-color);
+}
+.timeline-marker.critical-gap {
+  background-color: var(--alert-color);
+  box-shadow: 0 0 0 2px var(--alert-color);
+}
+.timeline-content.critical-content {
+  border-left: 3px solid var(--alert-color);
+  background-color: rgba(211, 47, 47, 0.05);
+}
+.timestamp { font-size: 0.9em; color: var(--text-secondary); margin: 0 0 10px 0; }
+.event-title { margin: 0 0 10px 0; font-size: 1.2em; }
+.event-detail { font-family: sans-serif; line-height: 1.5; margin-bottom: 15px; }
+.evidence-tag { display: inline-block; background-color: #333; padding: 4px 8px; font-size: 0.8em; border-radius: 2px; }
+.alert-tag { background-color: var(--alert-color); color: white; }
