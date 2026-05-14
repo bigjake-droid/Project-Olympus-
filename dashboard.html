@@ -1,67 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Project Vindex Dashboard</title>
-
-  <link rel="stylesheet" href="./style.css?v=23000" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VINDEX | Dashboard</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/logo-192.png">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <main class="dash-page">
-    <div class="dash-overlay"></div>
+  <div class="vindex-container">
+    <header class="vindex-header">
+      <h1>OPERATIONAL DASHBOARD</h1>
+      <p>SUBJECT: J. MANNING | CASE: 25CR1298</p>
+    </header>
 
-    <section class="dash-hero">
-      <div class="pv-mark">⚔</div>
-      <h1>Project Vindex</h1>
-      <p class="latin">Vox Dei</p>
-    </section>
-
-    <section class="dash-actions">
-      <button class="dash-card" onclick="window.location.href='guidebook.html?v=23000'">
-        <div class="card-icon">📖</div>
-        <span>Pro Se<br />Guidebook</span>
-        <small>Doctrine. Discipline. Record control.</small>
-        <b>→</b>
-      </button>
-
-      <button class="dash-card" onclick="window.location.href='evidence.html?v=23000'">
-        <div class="card-icon">🔒</div>
-        <span>Evidence<br />Organizer</span>
-        <small>Index proof. Tag doctrine. Build leverage.</small>
-        <b>→</b>
-      </button>
-
-      <button class="dash-card" onclick="alert('Case Timeline coming next.')">
-        <div class="card-icon">⏳</div>
-        <span>Case<br />Timeline</span>
-        <small>Every event matters.</small>
-        <b>→</b>
-      </button>
-
-      <button class="dash-card" onclick="alert('Export Dossier coming next.')">
-        <div class="card-icon">📜</div>
-        <span>Export<br />Dossier</span>
-        <small>Build. Export. Defend.</small>
-        <b>→</b>
-      </button>
-    </section>
-
-    <footer class="dash-footer">
-      <button onclick="alert('User coming next.')">User</button>
-      <p>Leave a record that cannot be ignored.</p>
-      <button onclick="logoutUser()">Logout</button>
-    </footer>
-  </main>
-
-  <script>
-    function logoutUser() {
-      localStorage.setItem("vindex_logged_in", "false");
-      window.location.href = "index.html?v=23000";
-    }
-  </script>
+    <div class="btn-grid">
+      <a href="evidence.html" class="vindex-btn">1. Event Chronology (Timeline)</a>
+      <a href="guidebook.html" class="vindex-btn">2. Tactical Playbook (Scripts)</a>
+      <button class="vindex-btn" style="opacity: 0.5; border-color: #333; color: #555;">3. Rule 16/17 Generator (Locked)</button>
+      <a href="index.html" class="vindex-btn" style="border-color: var(--alert-color); color: var(--alert-color);">SECURE LOGOUT</a>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
